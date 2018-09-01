@@ -1,0 +1,19 @@
+{
+    "packages": [
+        "packages/*",
+        "tests/*"
+    ],
+    "version": "0.0.0",
+    "command": {
+        "publish": {
+            "allowBranch": "master",
+            "conventionalCommits": true,
+            "private": false,
+            "ignoreChanges": [
+                "*.md",
+                "LICENSE",
+                "*.spec.*"
+            ]
+        }
+    }
+}

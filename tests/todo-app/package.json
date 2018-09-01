@@ -1,0 +1,14 @@
+{
+  "name": "todo-app",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "baset"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+      "metaf-core": "^0.0.0"
+  }
+}
