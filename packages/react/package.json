@@ -1,0 +1,25 @@
+{
+  "name": "metaf-react",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": "Ihor Chulinda <ichulinda@gmail.com>",
+  "repository": {
+      "type": "git",
+      "url": "git@github.com:Igmat/metaf.git"
+  },
+  "dependencies": {
+      "metaf-resolvable": "^0.0.0",
+      "react-is": "^16.5.0"
+  },
+  "peerDependencies": {
+      "react": "^16.4.2"
+  },
+  "devDependencies": {
+      "@types/react-is": "^16.3.1",
+      "@types/react": "^16.4.13",
+      "react": "^16.4.2"
+  },
+  "license": "MIT"
+}
