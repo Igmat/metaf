@@ -1,0 +1,13 @@
+{
+  "name": "metaf-resolvable",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": "Ihor Chulinda <ichulinda@gmail.com>",
+  "repository": {
+      "type": "git",
+      "url": "git@github.com:Igmat/metaf.git"
+  },
+  "license": "MIT"
+}
