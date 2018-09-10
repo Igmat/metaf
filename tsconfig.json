@@ -20,6 +20,7 @@
         "allowSyntheticDefaultImports": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "pretty": true
+        "pretty": true,
+        "stripInternal": true
     }
 }

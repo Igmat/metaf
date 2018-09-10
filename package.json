@@ -13,7 +13,7 @@
         "postbootstrap": "node ./scripts/createBinSymlinks.js",
         "postinstall": "npm run bootstrap",
         "build": "lerna exec -- tsc -p .",
-        "watch": "lerna exec --parallel -- tsc -p . -w",
+        "watch": "lerna exec --scope metaf-* --parallel -- tsc -p . -w",
         "test": "lerna link && baset",
         "accept": "baset a",
         "doctoc": "doctoc README.md docs/CONTRIBUTING.md",
