@@ -1,0 +1,14 @@
+{
+    "name": "metaf",
+    "version": "0.0.0",
+    "description": "MetaFramework for front-end.",
+    "keywords": [
+        "metaf"
+    ],
+    "author": "Ihor Chulinda <ichulinda@gmail.com>",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:Igmat/metaf.git"
+    }
+}
