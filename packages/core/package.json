@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "",
   "main": "dist/index.js",
+  "private": true,
   "types": "dist/index.d.ts",
   "author": "Ihor Chulinda <ichulinda@gmail.com>",
   "repository": {
@@ -10,7 +11,8 @@
       "url": "git@github.com:Igmat/metaf.git"
   },
   "dependencies": {
-      "csstype": "^2.5.6"
+      "csstype": "^2.5.6",
+      "metaf-core": "^0.0.0"
   },
   "license": "MIT"
 }

@@ -1,4 +1,4 @@
-import { IComponent } from '.';
+import { IComponent } from '../Component';
 import * as MetaF from './MetaF';
 
 export function createElement(

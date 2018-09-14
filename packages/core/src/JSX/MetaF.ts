@@ -1,5 +1,5 @@
 import * as CSS from 'csstype';
-import { IComponent } from './Component';
+import { IComponent } from '../Component';
 import * as NativeEvents from './NativeEvents';
 // tslint:disable:interface-name
 // tslint:disable:max-file-line-count
