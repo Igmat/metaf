@@ -1,12 +1,12 @@
 {
     "name": "metaf-root",
-    "version": "0.0.0-development",
+    "version": "0.0.0",
     "private": true,
     "description": "",
     "author": "Ihor Chulinda <ichulinda@gmail.com>",
     "repository": {
         "type": "git",
-        "url": "https://github.com/Igmat/metaf.git"
+        "url": "git@github.com:Igmat/metaf.git"
     },
     "license": "MIT",
     "scripts": {
@@ -17,12 +17,12 @@
         "watch": "lerna exec --scope metaf-* --parallel -- tsc -p . -w",
         "test": "lerna link && baset",
         "accept": "baset a",
-        "doctoc": "doctoc README.md docs/CONTRIBUTING.md",
-        "prerelease": "npm run doctoc",
+        "doctoc": "doctoc README.md packages/. docs/CONTRIBUTING.md",
+        "prerelease": "node ./scripts/prepublish.js && npm run doctoc",
+        "release": "lerna exec --scope metaf-* --concurrency 1 -- semantic-release -e semantic-release-monorepo",
         "precommit": "lint-staged",
         "commitmsg": "commitlint -e $GIT_PARAMS",
-        "cz": "git-cz",
-        "release": "lerna exec --scope metaf-* --concurrency 1 -- semantic-release -e semantic-release-monorepo"
+        "cz": "git-cz"
     },
     "devDependencies": {
         "@commitlint/cli": "^7.1.2",
