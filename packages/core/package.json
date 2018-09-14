@@ -12,7 +12,7 @@
   },
   "dependencies": {
       "csstype": "^2.5.6",
-      "metaf-core": "^0.0.0"
+      "metaf-resolvable": "^0.0.0"
   },
   "license": "MIT"
 }
