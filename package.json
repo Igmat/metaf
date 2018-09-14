@@ -1,6 +1,7 @@
 {
     "name": "metaf-root",
     "version": "0.0.0-development",
+    "private": true,
     "description": "",
     "author": "Ihor Chulinda <ichulinda@gmail.com>",
     "repository": {
@@ -21,8 +22,7 @@
         "precommit": "lint-staged",
         "commitmsg": "commitlint -e $GIT_PARAMS",
         "cz": "git-cz",
-        "release": "lerna exec --concurrency 1 -- semantic-release -e semantic-release-monorepo",
-        "travis-deploy-once": "travis-deploy-once"
+        "release": "lerna exec --concurrency 1 -- semantic-release -e semantic-release-monorepo"
     },
     "devDependencies": {
         "@commitlint/cli": "^7.1.2",
@@ -44,8 +44,7 @@
         "semantic-release": "^15.9.15",
         "semantic-release-monorepo": "^6.1.1",
         "tslint": "^5.11.0",
-        "typescript": "^3.0.3",
-        "travis-deploy-once": "^5.0.7"
+        "typescript": "^3.0.3"
     },
     "config": {
         "commitizen": {
