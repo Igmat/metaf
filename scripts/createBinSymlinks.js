@@ -1,8 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 const utils = require('util');
+const resolve = require('@lerna/resolve-symlink');
+const symlink = require('@lerna/create-symlink');
 
-const symlink = utils.promisify(fs.symlink);
 const ls = utils.promisify(fs.readdir);
 const lstat = utils.promisify(fs.lstat);
 async function isExists(filename) {
@@ -19,6 +20,7 @@ const packagesFolder = './packages';
 
 async function createBinSymlinks() {
     const binaries = (await ls(binFolder))
+        .filter(binary => !/\.cmd$/.test(binary))
         .map(binary => ({
             name: binary,
             path: path.resolve(binFolder, binary)
@@ -30,7 +32,7 @@ async function createBinSymlinks() {
         Promise.all(binaries.map(async (binary) => {
             const symlinkPath = path.resolve(package, binFolder, binary.name);
             if (await isExists(symlinkPath)) return;
-            return symlink(binary.path, symlinkPath);
+            return symlink(resolve(binary.path), symlinkPath, 'exec');
         }))));
 }
 
