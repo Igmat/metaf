@@ -1,8 +1,0 @@
-{
-    "extends": [
-        "../../tslint.json"
-    ],
-    "rules": {
-        "prefer-function-over-method": false
-    }
-}
