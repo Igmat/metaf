@@ -22,7 +22,7 @@
         "precommit": "lint-staged",
         "commitmsg": "commitlint -e $GIT_PARAMS",
         "cz": "git-cz",
-        "release": "lerna exec --concurrency 1 -- semantic-release -e semantic-release-monorepo"
+        "release": "lerna exec --scope metaf-* --concurrency 1 -- semantic-release -e semantic-release-monorepo"
     },
     "devDependencies": {
         "@commitlint/cli": "^7.1.2",
