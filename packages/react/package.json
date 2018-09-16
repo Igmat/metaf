@@ -1,6 +1,6 @@
 {
   "name": "metaf-react",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Resolvable component and injection root for adding DI/IoC to React App",
   "keywords": [
       "react",
@@ -23,7 +23,7 @@
       "url": "git@github.com:Igmat/metaf.git"
   },
   "dependencies": {
-      "metaf-resolvable": "^1.0.0",
+      "metaf-resolvable": "^0.0.1",
       "react-is": "^16.5.1"
   },
   "peerDependencies": {
