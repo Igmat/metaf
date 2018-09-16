@@ -28,7 +28,6 @@ Since `MetaF` itself isn't working yet, most probably you were looking for one o
 ## Table of Contents
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 - [What is it?](#what-is-it)
 - [Motivation](#motivation)
