@@ -32,7 +32,7 @@
         "@types/node": "^10.9.4",
         "baset": "^0.14.2",
         "baset-reader-ts": "0.14.2",
-        "baset-baseliner-md": "^0.14.0",
+        "baset-baseliner-md": "^0.14.2",
         "commitizen": "^2.10.1",
         "cross-spawn": "^6.0.5",
         "cz-conventional-changelog": "^2.1.0",
