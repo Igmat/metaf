@@ -31,7 +31,7 @@
         "@types/cross-spawn": "^6.0.0",
         "@types/node": "^10.9.4",
         "baset": "^0.14.2",
-        "baset-reader-ts": "0.13.7",
+        "baset-reader-ts": "0.14.2",
         "baset-baseliner-md": "^0.14.0",
         "commitizen": "^2.10.1",
         "cross-spawn": "^6.0.5",
