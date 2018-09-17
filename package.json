@@ -17,9 +17,10 @@
         "watch": "lerna exec --scope metaf-* --parallel -- tsc -p . -w",
         "test": "lerna link && baset",
         "accept": "baset a",
-        "doctoc": "doctoc README.md packages/. docs/CONTRIBUTING.md",
-        "prerelease": "node ./scripts/prepublish.js && npm run doctoc",
+        "doctoc": "doctoc README.md docs/CONTRIBUTING.md",
+        "prerelease": "npm run doctoc",
         "release": "lerna publish --yes",
+        "postrelease": "node ./scripts/publishGithubRelease.js",
         "precommit": "lint-staged",
         "commitmsg": "commitlint -e $GIT_PARAMS",
         "cz": "git-cz"
@@ -37,12 +38,16 @@
         "cz-conventional-changelog": "^2.1.0",
         "doctoc": "^1.3.1",
         "greenkeeper-lockfile": "^1.15.1",
+        "git-url-parse": "^10.0.1",
         "husky": "^0.14.3",
         "lerna": "^3.4.0",
         "lint-staged": "^7.2.2",
+        "node-fetch": "^2.2.0",
         "npm-run-all": "^4.1.3",
+        "remark-parse": "^5.0.0",
         "tslint": "^5.11.0",
-        "typescript": "^3.0.3"
+        "typescript": "^3.0.3",
+        "unified": "^7.0.0"
     },
     "config": {
         "commitizen": {
