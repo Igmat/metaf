@@ -7,6 +7,9 @@
     ],
     "author": "Ihor Chulinda <ichulinda@gmail.com>",
     "license": "MIT",
+    "scripts": {
+        "prepublish": "node ./scripts/prepublish.js"
+    },
     "repository": {
         "type": "git",
         "url": "git@github.com:Igmat/metaf.git"
