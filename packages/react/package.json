@@ -1,38 +1,38 @@
 {
-  "name": "metaf-react",
-  "version": "0.0.1",
-  "description": "Resolvable component and injection root for adding DI/IoC to React App",
-  "keywords": [
-      "react",
-      "component",
-      "DI",
-      "IoC",
-      "resolvable",
-      "resolve",
-      "dependency injection",
-      "inversion of control",
-      "injection root",
-      "metaf",
-      "typescript"
-  ],
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "author": "Ihor Chulinda <ichulinda@gmail.com>",
-  "repository": {
-      "type": "git",
-      "url": "git@github.com:Igmat/metaf.git"
-  },
-  "dependencies": {
-      "metaf-resolvable": "^0.0.1",
-      "react-is": "^16.5.1"
-  },
-  "peerDependencies": {
-      "react": "^16.5.1"
-  },
-  "devDependencies": {
-      "@types/react-is": "^16.3.1",
-      "@types/react": "^16.4.14",
-      "react": "^16.5.1"
-  },
-  "license": "MIT"
+    "name": "metaf-react",
+    "version": "0.1.1",
+    "description": "Resolvable component and injection root for adding DI/IoC to React App",
+    "keywords": [
+        "react",
+        "component",
+        "DI",
+        "IoC",
+        "resolvable",
+        "resolve",
+        "dependency injection",
+        "inversion of control",
+        "injection root",
+        "metaf",
+        "typescript"
+    ],
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "author": "Ihor Chulinda <ichulinda@gmail.com>",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:Igmat/metaf.git"
+    },
+    "dependencies": {
+        "metaf-resolvable": "^0.1.1",
+        "react-is": "^16.5.1"
+    },
+    "peerDependencies": {
+        "react": "^16.5.1"
+    },
+    "devDependencies": {
+        "@types/react": "^16.4.14",
+        "@types/react-is": "^16.3.1",
+        "react": "^16.5.1"
+    },
+    "license": "MIT"
 }

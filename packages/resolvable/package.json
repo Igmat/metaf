@@ -1,24 +1,24 @@
 {
-  "name": "metaf-resolvable",
-  "version": "0.0.1",
-  "description": "Abstract resolvable mixin and injection root for adding DI/IoC to any framework",
-  "keywords": [
-      "DI",
-      "IoC",
-      "resolvable",
-      "resolve",
-      "dependency injection",
-      "inversion of control",
-      "injection root",
-      "metaf",
-      "typescript"
-  ],
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "author": "Ihor Chulinda <ichulinda@gmail.com>",
-  "repository": {
-      "type": "git",
-      "url": "git@github.com:Igmat/metaf.git"
-  },
-  "license": "MIT"
+    "name": "metaf-resolvable",
+    "version": "0.1.1",
+    "description": "Abstract resolvable mixin and injection root for adding DI/IoC to any framework",
+    "keywords": [
+        "DI",
+        "IoC",
+        "resolvable",
+        "resolve",
+        "dependency injection",
+        "inversion of control",
+        "injection root",
+        "metaf",
+        "typescript"
+    ],
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "author": "Ihor Chulinda <ichulinda@gmail.com>",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:Igmat/metaf.git"
+    },
+    "license": "MIT"
 }
