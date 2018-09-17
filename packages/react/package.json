@@ -22,6 +22,10 @@
         "type": "git",
         "url": "git@github.com:Igmat/metaf.git"
     },
+    "scripts": {
+        "doctoc": "doctoc README.md",
+        "prepublish": "npm run doctoc"
+    },
     "dependencies": {
         "metaf-resolvable": "^0.1.1",
         "react-is": "^16.5.1"
