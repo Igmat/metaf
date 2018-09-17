@@ -22,8 +22,8 @@
 > **WARNING:** it's early beta, so documentation may have mistakes, if you face any problems feel free to create [issues](https://github.com/Igmat/metaf/issues).
 
 Since `MetaF` itself isn't working yet, most probably you were looking for one of those:  
-1. [metaf-resolvable](./packages/metaf-resolvable) - abstract resolvable mixin and injection root for adding DI/IoC to any framework
-2. [metaf-react](./packages/metaf-react) - resolvable component and injection root for adding DI/IoC to [React](https://reactjs.org/) App
+1. [metaf-resolvable](./packages/resolvable) - abstract resolvable mixin and injection root for adding DI/IoC to any framework
+2. [metaf-react](./packages/react) - resolvable component and injection root for adding DI/IoC to [React](https://reactjs.org/) App
 
 ## Table of Contents
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
