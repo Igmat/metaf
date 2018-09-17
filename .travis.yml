@@ -1,6 +1,5 @@
 dist: trusty
 sudo: true
-
 language: node_js
 cache:
   directories:
@@ -22,11 +21,9 @@ jobs:
     - stage: release
       if: branch = master
       node_js: "8 x64"
+      script: sh ./scripts/authenticate.sh
       deploy:
         provider: script
         skip_cleanup: true
         script: npm run release
 
-branches:
-  except:
-    - /^v\d+\.\d+\.\d+$/
