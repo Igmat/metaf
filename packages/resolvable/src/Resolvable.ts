@@ -7,6 +7,13 @@ export type Resolvable<I extends IInjections, P> =
     ? new (...args: ARGS) => AbstractResolvable<I> & R
     : new () => AbstractResolvable<I>;
 
+/**
+ * // TODO: comment resolvable
+ * @description
+ * @param [injections] dependencies that will be used by class directly
+ * @param [requirements] dependencies that should exist in code that use this class
+ * @param [parent] class that should be a parent for this one
+ */
 export function Resolvable<
     I extends IInjections = {},
     R extends { [index: string]: any } = {},
