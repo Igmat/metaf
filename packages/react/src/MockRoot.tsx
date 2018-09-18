@@ -70,7 +70,17 @@ function resolveFor<I extends MetafResolvable.IInjections = {}>(
 }
 
 let isResolverFnChangedToMock = false;
+
+/**
+ * // TODO: comment MockRoot
+ * @description Mock root
+ */
 export class MockRoot extends ApplicationRoot {
+
+    /**
+     * Creates an instance of mock root.
+     * @param props
+     */
     constructor(props: Readonly<IApplicationRootProps>) {
         super(props);
         if (!isResolverFnChangedToMock) {
@@ -79,6 +89,12 @@ export class MockRoot extends ApplicationRoot {
         }
         this.resolver = new ReactResolver(props.dependencies);
     }
+
+    /**
+     * // TODO: comment render
+     * @description Renders mock root
+     * @returns
+     */
     render() {
         return addPropsToAll(this.wrapInHocs(), this.resolver.resolveFor);
     }

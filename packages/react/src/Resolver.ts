@@ -2,11 +2,33 @@ import { Constructable, IDependencies, IInjections, IOverrideResult, Resolver, s
 import { ReactNode } from 'react';
 
 export type HOC = (app: ReactNode) => JSX.Element;
+
+/**
+ * // TODO: comment IRequirements
+ * @description requirements
+ */
 export interface IRequirements { [index: string]: HOC; }
 const requirementsOverride = Symbol('Requirements Override');
+
+/**
+ * // TODO: comment IRequirementsOverride
+ * @description requirements override
+ * @template T
+ * @template R
+ */
 export interface IRequirementsOverride<T extends HOC = any, R extends T = any> {
     [requirementsOverride]: [T, R];
 }
+
+/**
+ * // TODO: comment overrideRequirement
+ * @description Overrides requirement
+ * @template T
+ * @template R
+ * @param key
+ * @param value
+ * @returns requirement
+ */
 export function overrideRequirement<T extends HOC, R extends T>(key: T, value: R): IRequirementsOverride<T, R> {
     return { [requirementsOverride]: [key, value] };
 }
