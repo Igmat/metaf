@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.1.3"></a>
+## [0.1.3](https://github.com/Igmat/metaf/compare/v0.1.2...v0.1.3) (2018-09-18)
+
+
+### Bug Fixes
+
+* **react:** inital generated docs for better dev experience ([e813162](https://github.com/Igmat/metaf/commit/e813162))
+
+
+
+
+
 <a name="0.1.2"></a>
 ## [0.1.2](https://github.com/Igmat/metaf/compare/v0.1.1...v0.1.2) (2018-09-17)
 
