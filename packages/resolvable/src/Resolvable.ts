@@ -8,19 +8,23 @@ export type Resolvable<I extends IInjections, P> =
     : new () => AbstractResolvable<I>;
 
 /**
- * // TODO: comment resolvable
- * @description
+ * // TODO: comment Resolvable
+ * @description Resolvable
+ * @template I
+ * @template R
+ * @template P
  * @param [injections] dependencies that will be used by class directly
- * @param [requirements] dependencies that should exist in code that use this class
  * @param [parent] class that should be a parent for this one
+ * @param requirements dependencies that should exist in code that use this class
+ * @returns resolvable class to extend
  */
 export function Resolvable<
     I extends IInjections = {},
-    R extends { [index: string]: any } = {},
+    R extends any[] = [],
     P extends Constructable = new () => unknown>(
     injections: I = {} as I,
-    requirements: R = {} as R,
-    parent = Object.prototype.constructor as P): Resolvable<I, P> {
+    parent = Object.prototype.constructor as P,
+    ...requirements: R): Resolvable<I, P> {
     class ResolvableImpl extends parent.prototype.constructor {
         protected readonly dependencies: Readonly<IDependencies<I>>;
         constructor(...args: any[]) {

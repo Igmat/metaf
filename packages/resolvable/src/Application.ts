@@ -36,7 +36,7 @@ export function resolveFor<I extends IInjections = {}>(
  * @param classImpl
  * @returns
  */
-export function resolveRequirements<I extends { [index: string]: any } = {}>(requirements: I, classImpl: Constructable) {
+export function resolveRequirements<I extends any[]>(requirements: I, classImpl: Constructable) {
     return application.resolveRequirements(requirements, classImpl);
 }
 
