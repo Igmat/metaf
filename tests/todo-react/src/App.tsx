@@ -20,7 +20,7 @@ const getItem = () => Item;
 function simpleHoc(app: any) {
     return <div style={{ fontWeight: 'bold' }}>{app}</div>
 }
-class MyComponent extends ResolvableComponent({ MyService, Item: getItem }, { simpleHoc }) {
+class MyComponent extends ResolvableComponent({ MyService, Item: getItem }, simpleHoc) {
     public state = {
         i: this.dependencies.MyService.getI(),
     }
