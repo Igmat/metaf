@@ -7,7 +7,7 @@ export type HOC = (app: ReactNode) => JSX.Element;
  * // TODO: comment IRequirements
  * @description requirements
  */
-export interface IRequirements { [index: string]: HOC; }
+export type IRequirements = HOC[];
 const requirementsOverride = Symbol('Requirements Override');
 
 /**
@@ -48,18 +48,18 @@ export class ReactResolver extends Resolver {
             const prevValue = this.requirements.get(key);
             if (prevValue) {
                 const index = this.requirementsArray.indexOf(value);
-                this.requirementsArray.splice(index, 1, value);
-            } else {
+                this.requirementsArray.splice(index, 1);
+            }
+            if (this.requirementsArray.indexOf(value) === -1) {
                 this.requirementsArray.push(value);
             }
             this.requirements.set(key, value);
         });
     }
-    resolveRequirements<I extends IRequirements = {}>(requirements: I, classImpl: Constructable) {
+    resolveRequirements<I extends IRequirements = []>(requirements: I, classImpl: Constructable) {
         let isRequirementsUpdated = false;
-        Object.keys(requirements)
-            .forEach(requirementName => {
-                const requirement = requirements[requirementName];
+        requirements
+            .forEach(requirement => {
                 if (this.requirements.has(requirement)) return;
                 this.requirements.set(requirement, requirement);
                 this.requirementsArray.push(requirement);
@@ -79,7 +79,7 @@ export class ReactResolver extends Resolver {
  */
 export const resolver = new ReactResolver();
 
-function resolveRequirements<I extends IRequirements = {}>(requirements: I, classImpl: Constructable): void {
+function resolveRequirements<I extends IRequirements = []>(requirements: I, classImpl: Constructable): void {
     resolver.resolveRequirements(requirements, classImpl);
 }
 function resolveFor<I extends IInjections = {}>(

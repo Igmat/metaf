@@ -11,11 +11,11 @@ export type ResolvableComponent<I extends IInjections> =
  * @template I
  * @template R
  * @param [injections]
- * @param [requirements]
+ * @param requirements
  * @returns component
  */
-export function ResolvableComponent<I extends IInjections = {}, R extends IRequirements = {}>(
+export function ResolvableComponent<I extends IInjections = {}, R extends IRequirements = []>(
     injections: I = {} as I,
-    requirements: R = {} as R): ResolvableComponent<I> {
-    return Resolvable(injections, requirements, Component) as ResolvableComponent<I>;
+    ...requirements: R): ResolvableComponent<I> {
+    return Resolvable(injections, Component, ...requirements) as ResolvableComponent<I>;
 }
