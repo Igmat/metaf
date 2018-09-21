@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/Igmat/metaf/compare/v0.1.5...v0.2.0) (2018-09-21)
+
+
+### Bug Fixes
+
+* **react:** export through index ([0a94176](https://github.com/Igmat/metaf/commit/0a94176))
+
+
+### Features
+
+* **react:** define-requirement ([d1cbb00](https://github.com/Igmat/metaf/commit/d1cbb00))
+
+
+
+
+
 <a name="0.1.5"></a>
 ## [0.1.5](https://github.com/Igmat/metaf/compare/v0.1.4...v0.1.5) (2018-09-21)
 
