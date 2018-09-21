@@ -15,7 +15,7 @@ export type ResolveForFunction = <I extends IInjections = {}>(
     args?: any[],
 ) => IDependencies<I>;
 
-export type ResolveRequirementsFunction = <I extends any[] = []>(requirements: I, classImpl: Constructable) => void;
+export type ResolveRequirementsFunction = <R extends any[] = [], C extends object = any>(requirements: R, classImpl: C) => C;
 
 // we are using private symbol in order to force users work with override function
 // so override always type compatible with original value
@@ -96,13 +96,16 @@ export class Resolver {
     /**
      * // TODO: comment resolveRequirements
      * @description Resolves requirements
-     * @template I
+     * @template R
+     * @template C
      * @param requirements
      * @param classImpl
+     * @returns implementation
      */
-    resolveRequirements<I extends any[]>(requirements: I, classImpl: Constructable) {
+    resolveRequirements<R extends any[], C extends object>(requirements: R, classImpl: C) {
         // default implementation does nothing, since only Resolver for specific framework
         // knows how to apply requirements to particular environment
+        return classImpl;
     }
 
     /**

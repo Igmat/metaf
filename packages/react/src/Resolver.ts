@@ -56,7 +56,7 @@ export class ReactResolver extends Resolver {
             this.requirements.set(key, value);
         });
     }
-    resolveRequirements<I extends IRequirements = []>(requirements: I, classImpl: Constructable) {
+    resolveRequirements<R extends IRequirements, C extends object = any>(requirements: R, classImpl: C) {
         let isRequirementsUpdated = false;
         requirements
             .forEach(requirement => {
@@ -66,6 +66,8 @@ export class ReactResolver extends Resolver {
                 isRequirementsUpdated = true;
             });
         if (isRequirementsUpdated) this.requirementsSubscribers.forEach(subscriber => subscriber(this.requirementsArray));
+
+        return super.resolveRequirements(requirements, classImpl);
     }
     subscribeForRequirements(subscriber: (requirements: HOC[]) => void) {
         this.requirementsSubscribers.push(subscriber);
@@ -79,8 +81,10 @@ export class ReactResolver extends Resolver {
  */
 export const resolver = new ReactResolver();
 
-function resolveRequirements<I extends IRequirements = []>(requirements: I, classImpl: Constructable): void {
-    resolver.resolveRequirements(requirements, classImpl);
+export function resolveRequirements<
+    R extends IRequirements = [],
+    C extends object = any>(requirements: R, classImpl: C) {
+    return resolver.resolveRequirements(requirements, classImpl);
 }
 function resolveFor<I extends IInjections = {}>(
     instance: object,
