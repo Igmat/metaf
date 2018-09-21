@@ -4,6 +4,12 @@
     ],
     "rules": {
         "no-any": false,
-        "no-object-literal-type-assertion": false
+        "no-object-literal-type-assertion": false,
+        "variable-name": [
+            true,
+            "check-format",
+            "ban-keywords",
+            "allow-pascal-case"
+        ]
     }
 }
