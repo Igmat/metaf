@@ -32,11 +32,12 @@ export function resolveFor<I extends IInjections = {}>(
  * // TODO: comment resolveRequirements
  * @description Resolves requirements
  * @template I
+ * @template C
  * @param requirements
  * @param classImpl
  * @returns
  */
-export function resolveRequirements<I extends any[]>(requirements: I, classImpl: Constructable) {
+export function resolveRequirements<I extends any[], C extends object>(requirements: I, classImpl: C) {
     return application.resolveRequirements(requirements, classImpl);
 }
 
