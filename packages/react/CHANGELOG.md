@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.2"></a>
+## [0.2.2](https://github.com/Igmat/metaf/compare/v0.2.1...v0.2.2) (2018-10-04)
+
+
+### Bug Fixes
+
+* **react:** add jsdoc for all non-internal apis ([f6f8969](https://github.com/Igmat/metaf/commit/f6f8969))
+
+
+
+
+
 <a name="0.2.1"></a>
 ## [0.2.1](https://github.com/Igmat/metaf/compare/v0.2.0...v0.2.1) (2018-09-24)
 
