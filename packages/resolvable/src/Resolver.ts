@@ -22,21 +22,21 @@ export type ResolveRequirementsFunction = <R extends any[] = [], C extends objec
 const overrideSymbol = Symbol('Overrides');
 
 /**
- * // TODO: comment IOverrideResult
+ * Interface that forces users to make type safe overrides
  * @description override result
- * @template T
+ * @template T type of dependency that have to be overwritten
  */
 export interface IOverrideResult<T extends Injectable = any> {
     [overrideSymbol]: [T, Injected<T>];
 }
 
 /**
- * // TODO: comment override
- * @description Overrides this
- * @template T
- * @param key
- * @param value
- * @returns this
+ * Function that meant to be used as only way for specifying overrides
+ * @description creates a `[key, value]` pair describing override
+ * @template T type of dependency key that has to be overwritten
+ * @param key actual key that has to be overwritten
+ * @param value value that will be passed as dependency for this `key`
+ * @returns object with symbol property which point to `[key, value]` pair
  */
 export function override<T extends Injectable = any>(key: T, value: Injected<T>): IOverrideResult<T> {
     return {
@@ -45,20 +45,24 @@ export function override<T extends Injectable = any>(key: T, value: Injected<T>)
 }
 
 /**
- * // TODO: comment Resolver
- * @description Resolver
+ * Class that is responsible for resolving dependencies and requirements
+ * @description contains all resolved dependencies, resolvable class implementations
+ * and methods that used by `Resolvable` factories in order to create properly resolved
+ * classes with dependencies
+ * > **NOTE:** it also meant to be extended in order to provide first-class support
+ * for some particular frameworks e.g. `react`
  */
 export class Resolver {
 
     /**
-     * // TODO: comment injectionRoot
-     * @description Injection root of resolver
+     * WeakMap where `key` points to resolved and initialized and resolved `dependency`
+     * @description map of all resolved dependencies
      */
     protected injectionRoot: WeakMap<Injectable, any>;
 
     /**
-     * // TODO: comment implementations
-     * @description Implementations  of resolver
+     * WeakMap where `key` is resolvable class and `value` is object with resolved `dependencies`
+     * @description resolved dependencies for resolvable class implementations
      */
     protected implementations: WeakMap<Constructable, any>;
 
@@ -79,44 +83,29 @@ export class Resolver {
     }
 
     /**
-     * // TODO: comment initialize
-     * @description Initializes resolver
-     * @param obj
-     * @returns
-     */
-    initialize(obj: Injectable) {
-        // this function is pure, but it's possible that ancestors may need
-        // another solution for initializing instacnes, because of framework
-        // requirements, conventions and best practices
-        if (isConstructor(obj)) return new obj();
-        if (isCallable(obj)) return obj();
-        throw new Error(`Dependency expected to be constructable or callable, but got ${typeof obj}`);
-    }
-
-    /**
-     * // TODO: comment resolveRequirements
-     * @description Resolves requirements
-     * @template R
-     * @template C
-     * @param requirements
-     * @param classImpl
-     * @returns implementation
+     * Entry point for resolving requirements for particular resolvable class
+     * @description resolves `requirements` for `classImpl` and applies them to `ApplicationRoot`
+     * > **NOTE:** default implementation does nothing, since only Resolver for specific framework
+     * knows how to apply requirements to particular environment
+     * @template R type of `requirements` tuple
+     * @template C type of `classImpl` constructor
+     * @param requirements tuple of specific requirements that should be met by hosting application
+     * @param classImpl particular resolvable class implementation
+     * @returns `classImpl` or something with exactly same interface
      */
     resolveRequirements<R extends any[], C extends object>(requirements: R, classImpl: C) {
-        // default implementation does nothing, since only Resolver for specific framework
-        // knows how to apply requirements to particular environment
         return classImpl;
     }
 
     /**
-     * // TODO: comment resolveFor
-     * @description Resolves for
-     * @template I
-     * @param instance
-     * @param classImpl
-     * @param [injections]
-     * @param [args]
-     * @returns for
+     * Entry point for resolving dependencies of particular instance
+     * @description resolves `injections` for `instance` of `classImpl` resolvable class
+     * @template I type of `injections` dictionary
+     * @param instance particular class instance
+     * @param classImpl class constructor that was used for creating this instance
+     * @param [injections] dictionary of dependencies that should be resolved and initialized
+     * @param [args] arguments that were passed to constructor function for creating `instance`
+     * @returns dictionary of resolved and initialized dependencies
      */
     resolveFor<I extends IInjections = {}>(
         instance: object,
@@ -128,19 +117,34 @@ export class Resolver {
 
         const resolvedDependencies = {} as IDependencies<I>;
         Object.keys(injections)
-            .forEach(stateName =>
-                resolvedDependencies[stateName] = this.inject(injections[stateName]) as Injected<I[string]>);
+            .forEach(injectionName =>
+                resolvedDependencies[injectionName] = this.inject(injections[injectionName]) as Injected<I[string]>);
         this.implementations.set(classImpl, resolvedDependencies);
 
         return resolvedDependencies;
     }
 
     /**
-     * // TODO: comment inject
+     * This method is used internally to properly initialize dependency
+     * @description initializes injectable `obj`
+     * > **NOTE:** this function is pure, but it's possible that ancestors may need
+     * another solution for initializing instacnes, because of framework
+     * requirements, conventions and best practices
+     * @param obj dependency that has to be initialized
+     * @returns initialized dependency
+     */
+    protected initialize(obj: Injectable) {
+        if (isConstructor(obj)) return new obj();
+        if (isCallable(obj)) return obj();
+        throw new Error(`Dependency expected to be constructable or callable, but got ${typeof obj}`);
+    }
+
+    /**
+     * This method is used to inject resolved `dependency` for `injectionKey`
      * @description Injects resolver
-     * @template T
-     * @param injectionKey
-     * @returns inject
+     * @template T type of `injectionKey` that maps to type of `dependency` value
+     * @param injectionKey actual key of `dependency`
+     * @returns resolved `dependency` instance
      */
     protected inject<T extends Injectable>(injectionKey: T): Injected<T> {
         if (!this.injectionRoot.has(injectionKey)) {
@@ -153,10 +157,10 @@ export class Resolver {
     }
 
     /**
-     * // TODO: comment setOverride
-     * @description Sets override
-     * @template T
-     * @param overridePair
+     * This method works with result of `override` helper function
+     * @description Sets override for particular `injectionKey`
+     * @template T type of `injectionKey` that maps to type of `dependency` value
+     * @param overridePair actual `[key, value]` pair retrieved from override helper
      */
     protected setOverride<T extends Injectable = any>(overridePair: IOverrideResult<T>) {
         const [key, value] = overridePair[overrideSymbol];

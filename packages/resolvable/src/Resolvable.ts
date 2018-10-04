@@ -7,34 +7,40 @@ export type Resolvable<I extends IInjections, P> =
     ? new (...args: ARGS) => AbstractResolvable<I> & R
     : new () => AbstractResolvable<I>;
 
+/**
+ * ResolvableClassFn interface
+ * @description it's a factory function that creates new resolvable classes
+ * @template P typeof parent class that will be used for creating new classes
+ */
 export interface IResolvableClassFn<P extends Constructable = new () => unknown> {
     /**
-     * // TODO: comment Resolvable
+     * Resolvable class factory
      * @description Resolvable
-     * @template I
-     * @template R
-     * @param [injections] dependencies that will be used by class directly
+     * @template I type of dependencies' dictionary
+     * @template R type of requirements' tuple
+     * @param injections dependencies that will be used by class directly
      * @param requirements dependencies that should exist in code that use this class
      * @returns resolvable class to extend
      */
-    <I extends IInjections = {}, R extends any[]= []>(injections?: I, ...requirements: R): Resolvable<I, P>;
+    <I extends IInjections = {}, R extends any[]= []>(injections: I, ...requirements: R): Resolvable<I, P>;
     /**
-     * // TODO: comment Resolvable
+     * Resolvable class factory
      * @description Resolvable
-     * @template I
-     * @template R
+     * @template R type of requirements' tuple
      * @param requirements dependencies that should exist in code that use this class
      * @returns resolvable class to extend
      */
-    <I extends IInjections = {}, R extends any[]= []>(...requirements: R): Resolvable<I, P>;
+    <R extends any[]= []>(...requirements: R): Resolvable<{}, P>;
 }
 
 /**
- * // TODO: comment Resolvable
- * @description Resolvable
- * @template P
- * @param [parent] class that should be a parent for this one
- * @returns
+ * Creator of Resolvable factories
+ * @description this function is designed to be used by packages like `metaf-react`
+ * in order to create factory of Resolvable {something}, that afterwards would be used
+ * by users in particular projects
+ * @template P typeof parent class that will be used for creating new classes
+ * @param [parent] class that should be a parent for each class return from factory function
+ * @returns factory for creating resolvable classes
  */
 export function Resolvable<P extends Constructable = new () => unknown>(parent = Object.prototype.constructor as P): IResolvableClassFn<P> {
     function ResolvableClassFn<
@@ -43,16 +49,7 @@ export function Resolvable<P extends Constructable = new () => unknown>(parent =
             ...requirements: R): Resolvable<I, P> {
         const injections = requirements[0];
 
-        /**
-         * // TODO: comment ResolvableImpl
-         * @description Resolvable impl
-         */
         class ResolvableImpl extends parent.prototype.constructor {
-
-            /**
-             * // TODO: comment dependencies
-             * @description Dependencies  of resolvable impl
-             */
             protected readonly dependencies: Readonly<IDependencies<I>>;
             constructor(...args: any[]) {
                 super(...args);
