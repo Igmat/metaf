@@ -8,37 +8,40 @@ export type Injected<T extends Injectable> = T extends Constructable
         : never;
 
 /**
- * // TODO: comment IInjections
- * @description injections
+ * Injections interface
+ * @description it's a dictionary that contains constructors/getters
+ * for dependencies initialization
  */
 export interface IInjections {
     [index: string]: Injectable;
 }
 
 /**
- * // TODO: comment IDependencies
- * @description dependencies
+ * Dependencies interface
+ * @description it's a dictionary of resolved and initialized instances for each dependency
  */
 export type IDependencies<T extends IInjections> = {
     [K in keyof T]: Injected<T[K]>
 };
 
 /**
- * // TODO: comment AbstractResolvable
- * @description Abstract resolvable
- * @template I
+ * AbstractResolvable class
+ * @description this class doesn't meant to be used directly
+ * its main purpose is correct type inferring for dependencies
+ * and providing strict contract for further usage
+ * @template I type of dependencies' dictionary
  */
 export abstract class AbstractResolvable<I extends IInjections> {
 
     /**
-     * // TODO: comment dependencies
-     * @description Dependencies of abstract resolvable
+     * Dictionary of dependencies for this class
+     * @description contains resolved and initialized instances for each dependency
      */
     protected readonly dependencies: Readonly<IDependencies<I>>;
 
     /**
      * Creates an instance of abstract resolvable.
-     * @param dependencies
+     * @param dependencies dependencies dictionary that should be injected to resolvable class
      */
     constructor(dependencies: Readonly<IDependencies<I>>) {
         this.dependencies = dependencies;
