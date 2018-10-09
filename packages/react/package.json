@@ -36,7 +36,7 @@
     "devDependencies": {
         "@types/react": "16.4.16",
         "@types/react-is": "16.5.0",
-        "react": "16.5.1"
+        "react": "16.5.2"
     },
     "license": "MIT"
 }
