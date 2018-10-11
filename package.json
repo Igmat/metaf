@@ -29,7 +29,7 @@
         "@commitlint/cli": "7.2.0",
         "@commitlint/config-conventional": "7.1.2",
         "@types/cross-spawn": "6.0.0",
-        "@types/node": "10.9.4",
+        "@types/node": "10.11.7",
         "baset": "0.14.8",
         "baset-reader-ts": "0.14.7",
         "baset-baseliner-md": "0.14.8",
