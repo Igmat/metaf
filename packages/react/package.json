@@ -1,6 +1,6 @@
 {
     "name": "metaf-react",
-    "version": "0.2.13",
+    "version": "0.2.14",
     "description": "Resolvable component and injection root for adding DI/IoC to React App",
     "keywords": [
         "react",
