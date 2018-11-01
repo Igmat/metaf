@@ -1,6 +1,6 @@
 {
     "name": "metaf-core",
-    "version": "0.2.25",
+    "version": "0.2.26",
     "description": "",
     "main": "dist/index.js",
     "private": true,
