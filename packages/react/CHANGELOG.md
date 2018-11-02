@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.27](https://github.com/Igmat/metaf/compare/v0.2.26...v0.2.27) (2018-11-02)
+
+**Note:** Version bump only for package metaf-react
+
+
+
+
+
 ## [0.2.26](https://github.com/Igmat/metaf/compare/v0.2.25...v0.2.26) (2018-11-01)
 
 **Note:** Version bump only for package metaf-react
