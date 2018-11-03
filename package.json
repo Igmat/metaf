@@ -47,7 +47,7 @@
         "remark-parse": "5.0.0",
         "tslint": "5.11.0",
         "typescript": "3.1.6",
-        "unified": "7.0.0"
+        "unified": "7.0.1"
     },
     "config": {
         "commitizen": {
