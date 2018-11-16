@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.33](https://github.com/Igmat/metaf/compare/v0.2.32...v0.2.33) (2018-11-16)
+
+
+### Bug Fixes
+
+* **core:** implement default component and state ([fc5ba4c](https://github.com/Igmat/metaf/commit/fc5ba4c))
+* **core:** implement dom renderer ([4b906d5](https://github.com/Igmat/metaf/commit/4b906d5))
+* **core:** improve synchronous typings ([af82b77](https://github.com/Igmat/metaf/commit/af82b77))
+* **resolvable:** change default parent and improve typings ([78c30ba](https://github.com/Igmat/metaf/commit/78c30ba))
+
+
+
+
+
 ## [0.2.32](https://github.com/Igmat/metaf/compare/v0.2.31...v0.2.32) (2018-11-08)
 
 **Note:** Version bump only for package metaf-root
