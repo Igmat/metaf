@@ -1,9 +1,8 @@
-import { ensure } from '../utils';
+import { Constructable } from 'metaf-resolvable';
 import { context } from './runInSync';
 import { AsyncPrimitivesWrapper, sync } from './sync';
-export type Initiable<I> = new () => I;
-type TypedFunction<T, ARGS extends any[]> = (...args: ARGS) => T;
-function isFunction<T, ARGS extends any[]>(arg: any): arg is TypedFunction<T, ARGS> {
+type TypedFunction<T, ARGS extends unknown[]> = (...args: ARGS) => T;
+function isFunction<T, ARGS extends unknown[]>(arg: unknown): arg is TypedFunction<T, ARGS> {
     return typeof arg === 'function';
 }
 export type SynchronizedProperty<T> = T extends (...args: infer ARGS) => infer R
@@ -12,17 +11,17 @@ export type SynchronizedProperty<T> = T extends (...args: infer ARGS) => infer R
 export type Synchronous<I extends object> = {
     [P in keyof I]: SynchronizedProperty<I[P]>;
 };
-function synchronizeFunction<R, ARGS extends any[]>(method: TypedFunction<R, ARGS>): TypedFunction<AsyncPrimitivesWrapper<R>, ARGS> {
+function synchronizeFunction<R, ARGS extends unknown[]>(method: TypedFunction<R, ARGS>): TypedFunction<AsyncPrimitivesWrapper<R>, ARGS> {
     return (...args: ARGS) => {
         if (!context.cache.has(method)) context.cache.set(method, {});
-        const functionCache = ensure(context.cache.get(method));
+        const functionCache = context.cache.get(method) as { [arg: string]: R };
         const key = JSON.stringify(args);
         if (!functionCache.hasOwnProperty(key)) functionCache[key] = method(...args);
 
         return sync(functionCache[key]);
     };
 }
-export function syncService<I extends object>(serviceConstructor: Initiable<I>): Synchronous<I> {
+export function syncService<I extends object>(serviceConstructor: Constructable<[], I>): Synchronous<I> {
     const instance = new serviceConstructor();
     const result: Partial<Synchronous<I>> = {};
     // We want to wrap all properties, including inherited,

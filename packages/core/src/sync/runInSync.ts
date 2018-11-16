@@ -1,10 +1,10 @@
 import { PromiseCache } from './sync';
 
 export const context = {
-    cache: new WeakMap<Function, { [args: string]: any }>(),
+    cache: new WeakMap<Function, { [args: string]: unknown }>(),
 };
 
-export function runInSync(app: () => void, cache = new WeakMap<Function, { [args: string]: any }>()) {
+export function runInSync(app: () => void, cache = new WeakMap<Function, { [args: string]: unknown }>()) {
     context.cache = cache;
     try {
         app();
