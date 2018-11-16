@@ -1,6 +1,5 @@
-import { Callable, Constructable } from './utils';
+import { Callable, Constructable, Injectable } from './utils';
 
-export type Injectable = Constructable | Callable;
 export type Injected<T extends Injectable> = T extends Constructable
     ? InstanceType<T>
     : T extends Callable

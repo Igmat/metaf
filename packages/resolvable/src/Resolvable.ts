@@ -12,7 +12,7 @@ export type Resolvable<I extends IInjections, P> =
  * @description it's a factory function that creates new resolvable classes
  * @template P typeof parent class that will be used for creating new classes
  */
-export interface IResolvableClassFn<P extends Constructable = new () => unknown> {
+export interface IResolvableClassFn<P extends Constructable = new () => object> {
     /**
      * Resolvable class factory
      * @description Resolvable
@@ -42,7 +42,7 @@ export interface IResolvableClassFn<P extends Constructable = new () => unknown>
  * @param [parent] class that should be a parent for each class return from factory function
  * @returns factory for creating resolvable classes
  */
-export function Resolvable<P extends Constructable = new () => unknown>(parent = Object.prototype.constructor as P): IResolvableClassFn<P> {
+export function Resolvable<P extends Constructable = new () => object>(parent = class {} as P): IResolvableClassFn<P> {
     function ResolvableClassFn<
         I extends IInjections = {},
         R extends any[]= []>(

@@ -1,13 +1,7 @@
 // tslint:disable:prefer-function-over-method
-import { IDependencies, IInjections, Injectable, Injected } from './AbstractResolvable';
-import { Callable, Constructable } from './utils';
+import { IDependencies, IInjections, Injected } from './AbstractResolvable';
+import { Constructable, Injectable, isCallable, isConstructor } from './utils';
 
-function isConstructor(obj: Injectable): obj is Constructable {
-    return obj.hasOwnProperty('prototype') && !!obj.prototype.constructor.name;
-}
-function isCallable(obj: Injectable): obj is Callable {
-    return typeof obj === 'function';
-}
 export type ResolveForFunction = <I extends IInjections = {}>(
     instance: object,
     classImpl: Constructable,
