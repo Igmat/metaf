@@ -21,8 +21,6 @@
         "prerelease": "npm run doctoc",
         "release": "lerna publish --yes",
         "postrelease": "node ./scripts/publishGithubRelease.js",
-        "precommit": "lint-staged",
-        "commitmsg": "commitlint -e $GIT_PARAMS",
         "cz": "git-cz"
     },
     "devDependencies": {
@@ -73,5 +71,11 @@
             "tslint --fix --force",
             "git add"
         ]
+    },
+    "husky": {
+        "hooks": {
+            "precommit": "lint-staged",
+            "commitmsg": "commitlint -e $GIT_PARAMS"
+        }
     }
 }
