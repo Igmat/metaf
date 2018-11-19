@@ -3,7 +3,7 @@
         "../../tslint.json"
     ],
     "rules": {
-        "no-any": false,
+        "no-shadowed-variable": false,
         "no-object-literal-type-assertion": false
     }
 }

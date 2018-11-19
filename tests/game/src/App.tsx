@@ -1,10 +1,25 @@
 import MetaF, { Component } from 'metaf-core';
 import './App.less';
 import { Field } from './Field';
+import { Opponent } from './Opponent';
+import { Player } from './Player';
 
-export class App extends Component() {
-    private field = new Field();
+export class App extends Component({
+    Field,
+    Player,
+    Opponent,
+}) {
     render() {
-        return <this.field.render />;
+        const {
+            Field,
+            Opponent,
+            Player,
+        } = this.dependencies;
+
+        return [
+            <Opponent.render />,
+            <Field.render />,
+            <Player.render />,
+        ];
     }
 }
