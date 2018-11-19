@@ -13,7 +13,7 @@ export interface SVGAttributes<T> extends DOMAttributes<T> {
     method?: string;
     min?: number | string;
     name?: string;
-    style?: CSSProperties;
+    style?: CSSProperties | string;
     target?: string;
     type?: string;
     width?: number | string;
@@ -274,5 +274,6 @@ export interface SVGAttributes<T> extends DOMAttributes<T> {
     yChannelSelector?: string;
     z?: number | string;
     zoomAndPan?: string;
+    viewbox?: string;
 }
 export type SVGProps = SVGAttributes<SVGElement>;

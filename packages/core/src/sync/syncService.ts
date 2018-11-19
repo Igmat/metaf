@@ -5,7 +5,13 @@ type TypedFunction<T, ARGS extends unknown[]> = (...args: ARGS) => T;
 function isFunction<T, ARGS extends unknown[]>(arg: unknown): arg is TypedFunction<T, ARGS> {
     return typeof arg === 'function';
 }
-export type SynchronizedProperty<T> = T extends (...args: infer ARGS) => infer R
+export type SynchronizedProperty<T> =
+    T extends () => infer R
+    ? () => AsyncPrimitivesWrapper<R>
+    // FIXME: remove this hack for JSX syntax when TS will properly use createElement signature
+    : T extends (props: infer PROPS, ...args: infer ARGS) => infer R
+    ? (props: PROPS, ...args: ARGS) => AsyncPrimitivesWrapper<R>
+    : T extends (...args: infer ARGS) => infer R
     ? TypedFunction<AsyncPrimitivesWrapper<R>, ARGS>
     : AsyncPrimitivesWrapper<T>;
 export type Synchronous<I extends object> = {

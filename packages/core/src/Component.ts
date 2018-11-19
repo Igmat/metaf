@@ -5,7 +5,7 @@ import { IRequirements, State } from './State';
 
 export abstract class AbstractComponent {
     protected readonly tagname: string = '';
-    abstract render<P = {}, C extends unknown[]= unknown[]>(props: P, ...children: C): MetaFNode | MetaFChild | null;
+    abstract render(props: unknown, ...children: unknown[]): MetaFNode | MetaFChild;
 }
 export type Component<I extends IInjections = {}> =
     new () => InstanceType<State<I>> & AbstractComponent;
@@ -20,11 +20,12 @@ export function Component<I extends IInjections = {}, R extends IRequirements = 
             this.tagName = Object.getPrototypeOf(this).constructor.name;
             this.render = (...args: unknown[]) => BaseComponent.prototype.render.call(this, {}, render(...args));
         }
-        render<P = {}, C extends unknown[]= unknown[]>(props: P, ...children: C): MetaFNode | MetaFChild | null {
+        render(props: unknown, ...children: unknown[]): MetaFNode | MetaFChild {
             // tslint:disable-next-line:no-any
             return createElement(this.tagName as any, props, ...children);
         }
     }
 
+    // tslint:disable-next-line:no-any
     return BaseComponent as any;
 }

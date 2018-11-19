@@ -1,19 +1,20 @@
 import { createElement } from './createElement';
 import MetaFHTML from './HTML';
 import { MetaFSVG } from './SVG';
+import { MetaFChild } from './types';
 
-const MetaF = {
+export const MetaF = {
     createElement,
 };
 
+// FIXME: hack for current jsx resolution mechanism
 // tslint:disable-next-line:no-namespace
-namespace MetaF {
+export namespace MetaF {
     export namespace JSX {
-        // tslint:disable-next-line:no-empty-interface
+        export type Element = MetaFChild;
+        // FIXME: hack for current jsx resolution mechanism
         export interface IntrinsicElements extends MetaFHTML, MetaFSVG {
         }
     }
 
 }
-
-export { MetaF };

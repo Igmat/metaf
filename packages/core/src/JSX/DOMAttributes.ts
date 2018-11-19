@@ -6,180 +6,100 @@ import * as EventHandlers from './EventHandlers';
 // Props / DOM Attributes
 // ----------------------------------------------------------------------
 export interface DOMAttributes<T> {
-    dangerouslySetInnerHTML?: {
-        __html: string;
-    };
     // Clipboard Events
     onCopy?: EventHandlers.ClipboardEventHandler<T>;
-    onCopyCapture?: EventHandlers.ClipboardEventHandler<T>;
     onCut?: EventHandlers.ClipboardEventHandler<T>;
-    onCutCapture?: EventHandlers.ClipboardEventHandler<T>;
     onPaste?: EventHandlers.ClipboardEventHandler<T>;
-    onPasteCapture?: EventHandlers.ClipboardEventHandler<T>;
     // Composition Events
     onCompositionEnd?: EventHandlers.CompositionEventHandler<T>;
-    onCompositionEndCapture?: EventHandlers.CompositionEventHandler<T>;
     onCompositionStart?: EventHandlers.CompositionEventHandler<T>;
-    onCompositionStartCapture?: EventHandlers.CompositionEventHandler<T>;
     onCompositionUpdate?: EventHandlers.CompositionEventHandler<T>;
-    onCompositionUpdateCapture?: EventHandlers.CompositionEventHandler<T>;
     // Focus Events
     onFocus?: EventHandlers.FocusEventHandler<T>;
-    onFocusCapture?: EventHandlers.FocusEventHandler<T>;
     onBlur?: EventHandlers.FocusEventHandler<T>;
-    onBlurCapture?: EventHandlers.FocusEventHandler<T>;
     // Form Events
     onChange?: EventHandlers.FormEventHandler<T>;
-    onChangeCapture?: EventHandlers.FormEventHandler<T>;
     onInput?: EventHandlers.FormEventHandler<T>;
-    onInputCapture?: EventHandlers.FormEventHandler<T>;
     onReset?: EventHandlers.FormEventHandler<T>;
-    onResetCapture?: EventHandlers.FormEventHandler<T>;
     onSubmit?: EventHandlers.FormEventHandler<T>;
-    onSubmitCapture?: EventHandlers.FormEventHandler<T>;
     onInvalid?: EventHandlers.FormEventHandler<T>;
-    onInvalidCapture?: EventHandlers.FormEventHandler<T>;
     // Image Events
     onLoad?: EventHandlers.MetaFEventHandler<T>;
-    onLoadCapture?: EventHandlers.MetaFEventHandler<T>;
     onError?: EventHandlers.MetaFEventHandler<T>; // also a Media Event
-    onErrorCapture?: EventHandlers.MetaFEventHandler<T>; // also a Media Event
     // Keyboard Events
     onKeyDown?: EventHandlers.KeyboardEventHandler<T>;
-    onKeyDownCapture?: EventHandlers.KeyboardEventHandler<T>;
     onKeyPress?: EventHandlers.KeyboardEventHandler<T>;
-    onKeyPressCapture?: EventHandlers.KeyboardEventHandler<T>;
     onKeyUp?: EventHandlers.KeyboardEventHandler<T>;
-    onKeyUpCapture?: EventHandlers.KeyboardEventHandler<T>;
     // Media Events
     onAbort?: EventHandlers.MetaFEventHandler<T>;
-    onAbortCapture?: EventHandlers.MetaFEventHandler<T>;
     onCanPlay?: EventHandlers.MetaFEventHandler<T>;
-    onCanPlayCapture?: EventHandlers.MetaFEventHandler<T>;
     onCanPlayThrough?: EventHandlers.MetaFEventHandler<T>;
-    onCanPlayThroughCapture?: EventHandlers.MetaFEventHandler<T>;
     onDurationChange?: EventHandlers.MetaFEventHandler<T>;
-    onDurationChangeCapture?: EventHandlers.MetaFEventHandler<T>;
     onEmptied?: EventHandlers.MetaFEventHandler<T>;
-    onEmptiedCapture?: EventHandlers.MetaFEventHandler<T>;
     onEncrypted?: EventHandlers.MetaFEventHandler<T>;
-    onEncryptedCapture?: EventHandlers.MetaFEventHandler<T>;
     onEnded?: EventHandlers.MetaFEventHandler<T>;
-    onEndedCapture?: EventHandlers.MetaFEventHandler<T>;
     onLoadedData?: EventHandlers.MetaFEventHandler<T>;
-    onLoadedDataCapture?: EventHandlers.MetaFEventHandler<T>;
     onLoadedMetadata?: EventHandlers.MetaFEventHandler<T>;
-    onLoadedMetadataCapture?: EventHandlers.MetaFEventHandler<T>;
     onLoadStart?: EventHandlers.MetaFEventHandler<T>;
-    onLoadStartCapture?: EventHandlers.MetaFEventHandler<T>;
     onPause?: EventHandlers.MetaFEventHandler<T>;
-    onPauseCapture?: EventHandlers.MetaFEventHandler<T>;
     onPlay?: EventHandlers.MetaFEventHandler<T>;
-    onPlayCapture?: EventHandlers.MetaFEventHandler<T>;
     onPlaying?: EventHandlers.MetaFEventHandler<T>;
-    onPlayingCapture?: EventHandlers.MetaFEventHandler<T>;
     onProgress?: EventHandlers.MetaFEventHandler<T>;
-    onProgressCapture?: EventHandlers.MetaFEventHandler<T>;
     onRateChange?: EventHandlers.MetaFEventHandler<T>;
-    onRateChangeCapture?: EventHandlers.MetaFEventHandler<T>;
     onSeeked?: EventHandlers.MetaFEventHandler<T>;
-    onSeekedCapture?: EventHandlers.MetaFEventHandler<T>;
     onSeeking?: EventHandlers.MetaFEventHandler<T>;
-    onSeekingCapture?: EventHandlers.MetaFEventHandler<T>;
     onStalled?: EventHandlers.MetaFEventHandler<T>;
-    onStalledCapture?: EventHandlers.MetaFEventHandler<T>;
     onSuspend?: EventHandlers.MetaFEventHandler<T>;
-    onSuspendCapture?: EventHandlers.MetaFEventHandler<T>;
     onTimeUpdate?: EventHandlers.MetaFEventHandler<T>;
-    onTimeUpdateCapture?: EventHandlers.MetaFEventHandler<T>;
     onVolumeChange?: EventHandlers.MetaFEventHandler<T>;
-    onVolumeChangeCapture?: EventHandlers.MetaFEventHandler<T>;
     onWaiting?: EventHandlers.MetaFEventHandler<T>;
-    onWaitingCapture?: EventHandlers.MetaFEventHandler<T>;
     // MouseEvents
     onClick?: EventHandlers.MouseEventHandler<T>;
-    onClickCapture?: EventHandlers.MouseEventHandler<T>;
     onContextMenu?: EventHandlers.MouseEventHandler<T>;
-    onContextMenuCapture?: EventHandlers.MouseEventHandler<T>;
     onDoubleClick?: EventHandlers.MouseEventHandler<T>;
-    onDoubleClickCapture?: EventHandlers.MouseEventHandler<T>;
     onDrag?: EventHandlers.DragEventHandler<T>;
-    onDragCapture?: EventHandlers.DragEventHandler<T>;
     onDragEnd?: EventHandlers.DragEventHandler<T>;
-    onDragEndCapture?: EventHandlers.DragEventHandler<T>;
     onDragEnter?: EventHandlers.DragEventHandler<T>;
-    onDragEnterCapture?: EventHandlers.DragEventHandler<T>;
     onDragExit?: EventHandlers.DragEventHandler<T>;
-    onDragExitCapture?: EventHandlers.DragEventHandler<T>;
     onDragLeave?: EventHandlers.DragEventHandler<T>;
-    onDragLeaveCapture?: EventHandlers.DragEventHandler<T>;
     onDragOver?: EventHandlers.DragEventHandler<T>;
-    onDragOverCapture?: EventHandlers.DragEventHandler<T>;
     onDragStart?: EventHandlers.DragEventHandler<T>;
-    onDragStartCapture?: EventHandlers.DragEventHandler<T>;
     onDrop?: EventHandlers.DragEventHandler<T>;
-    onDropCapture?: EventHandlers.DragEventHandler<T>;
     onMouseDown?: EventHandlers.MouseEventHandler<T>;
-    onMouseDownCapture?: EventHandlers.MouseEventHandler<T>;
     onMouseEnter?: EventHandlers.MouseEventHandler<T>;
     onMouseLeave?: EventHandlers.MouseEventHandler<T>;
     onMouseMove?: EventHandlers.MouseEventHandler<T>;
-    onMouseMoveCapture?: EventHandlers.MouseEventHandler<T>;
     onMouseOut?: EventHandlers.MouseEventHandler<T>;
-    onMouseOutCapture?: EventHandlers.MouseEventHandler<T>;
     onMouseOver?: EventHandlers.MouseEventHandler<T>;
-    onMouseOverCapture?: EventHandlers.MouseEventHandler<T>;
     onMouseUp?: EventHandlers.MouseEventHandler<T>;
-    onMouseUpCapture?: EventHandlers.MouseEventHandler<T>;
     // Selection Events
     onSelect?: EventHandlers.MetaFEventHandler<T>;
-    onSelectCapture?: EventHandlers.MetaFEventHandler<T>;
     // Touch Events
     onTouchCancel?: EventHandlers.TouchEventHandler<T>;
-    onTouchCancelCapture?: EventHandlers.TouchEventHandler<T>;
     onTouchEnd?: EventHandlers.TouchEventHandler<T>;
-    onTouchEndCapture?: EventHandlers.TouchEventHandler<T>;
     onTouchMove?: EventHandlers.TouchEventHandler<T>;
-    onTouchMoveCapture?: EventHandlers.TouchEventHandler<T>;
     onTouchStart?: EventHandlers.TouchEventHandler<T>;
-    onTouchStartCapture?: EventHandlers.TouchEventHandler<T>;
     // Pointer Events
     onPointerDown?: EventHandlers.PointerEventHandler<T>;
-    onPointerDownCapture?: EventHandlers.PointerEventHandler<T>;
     onPointerMove?: EventHandlers.PointerEventHandler<T>;
-    onPointerMoveCapture?: EventHandlers.PointerEventHandler<T>;
     onPointerUp?: EventHandlers.PointerEventHandler<T>;
-    onPointerUpCapture?: EventHandlers.PointerEventHandler<T>;
     onPointerCancel?: EventHandlers.PointerEventHandler<T>;
-    onPointerCancelCapture?: EventHandlers.PointerEventHandler<T>;
     onPointerEnter?: EventHandlers.PointerEventHandler<T>;
-    onPointerEnterCapture?: EventHandlers.PointerEventHandler<T>;
     onPointerLeave?: EventHandlers.PointerEventHandler<T>;
-    onPointerLeaveCapture?: EventHandlers.PointerEventHandler<T>;
     onPointerOver?: EventHandlers.PointerEventHandler<T>;
-    onPointerOverCapture?: EventHandlers.PointerEventHandler<T>;
     onPointerOut?: EventHandlers.PointerEventHandler<T>;
-    onPointerOutCapture?: EventHandlers.PointerEventHandler<T>;
     onGotPointerCapture?: EventHandlers.PointerEventHandler<T>;
-    onGotPointerCaptureCapture?: EventHandlers.PointerEventHandler<T>;
     onLostPointerCapture?: EventHandlers.PointerEventHandler<T>;
-    onLostPointerCaptureCapture?: EventHandlers.PointerEventHandler<T>;
     // UI Events
     onScroll?: EventHandlers.UIEventHandler<T>;
-    onScrollCapture?: EventHandlers.UIEventHandler<T>;
     // Wheel Events
     onWheel?: EventHandlers.WheelEventHandler<T>;
-    onWheelCapture?: EventHandlers.WheelEventHandler<T>;
     // Animation Events
     onAnimationStart?: EventHandlers.AnimationEventHandler<T>;
-    onAnimationStartCapture?: EventHandlers.AnimationEventHandler<T>;
     onAnimationEnd?: EventHandlers.AnimationEventHandler<T>;
-    onAnimationEndCapture?: EventHandlers.AnimationEventHandler<T>;
     onAnimationIteration?: EventHandlers.AnimationEventHandler<T>;
-    onAnimationIterationCapture?: EventHandlers.AnimationEventHandler<T>;
     // Transition Events
     onTransitionEnd?: EventHandlers.TransitionEventHandler<T>;
-    onTransitionEndCapture?: EventHandlers.TransitionEventHandler<T>;
 }
 export interface CSSProperties extends CSS.Properties<string | number> {
 }

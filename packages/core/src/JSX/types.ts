@@ -4,8 +4,12 @@ import { MetaFSVG } from './SVG';
 //
 // Component API
 // ----------------------------------------------------------------------
-export type SFC<P = {}, C extends unknown[] = unknown[]> = (props: P, ...children: C) => MetaFNode | MetaFChild | null;
-export interface Renderable<P, C extends unknown[]> {
+// `any` used here, because all other types won't allow TS to properly narrow the type based on usage
+// could be probably fixed by future versions of TS, which will use createElement signature for JSX
+// tslint:disable-next-line:no-any
+export type SFC<P extends object = any, C extends unknown[] = any[]> = (props: P, ...children: C) => MetaFNode | MetaFChild | null;
+// tslint:disable-next-line:no-any
+export interface Renderable<P extends object = any, C extends unknown[] = any[]> {
     render: SFC<P, C>;
 }
 //
@@ -16,20 +20,24 @@ export type InferProps<T extends RenderableType> =
     ? MetaFHTML[T]
     : T extends keyof MetaFSVG
     ? MetaFSVG[T]
-    : T extends Renderable<infer ComponentProps, unknown[]>
+    : T extends Renderable<infer ComponentProps, infer ComponentChild>
     ? ComponentProps
-    : T extends SFC<infer SFCProps, unknown[]>
+    : T extends SFC<infer SFCProps, infer SFCChild>
     ? SFCProps
-    : never;
+    : {};
 export type InferChild<T extends RenderableType> =
     T extends keyof MetaFHTML | MetaFSVG
     ? MetaFNode
-    : T extends Renderable<unknown, infer ComponentChild>
+    : T extends Renderable<infer ComponentProps, infer ComponentChild>
     ? ComponentChild
-    : T extends SFC<unknown, infer SFCChild>
+    : T extends SFC<infer SFCProps, infer SFCChild>
     ? SFCChild
-    : never;
-export type RenderableType<P = unknown, C extends unknown[] = unknown[]> = SFC<P, C> | Renderable<P, C> | keyof MetaFHTML | keyof MetaFSVG;
+    : never[];
+export type RenderableType =
+    SFC |
+    Renderable |
+    keyof MetaFHTML |
+    keyof MetaFSVG;
 export interface MetaFElement<T extends RenderableType = RenderableType> {
     type: T;
     props: InferProps<T>;
@@ -39,5 +47,5 @@ export interface MetaFElement<T extends RenderableType = RenderableType> {
 // MetaF Nodes
 // ----------------------------------------------------------------------
 export type MetaFText = string | number;
-export type MetaFChild = MetaFElement | MetaFText;
+export type MetaFChild = MetaFElement | MetaFText | null;
 export type MetaFNode = MetaFChild[];
