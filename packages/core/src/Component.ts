@@ -12,18 +12,20 @@ export type Component<I extends IInjections = {}> =
 export function Component<I extends IInjections = {}, R extends IRequirements = []>(
     injections?: I,
     ...requirements: R): Component<I> {
-    class BaseComponent extends State(injections, ...requirements) {
+    abstract class BaseComponent extends State(injections, ...requirements) {
         protected readonly tagName: string;
         constructor() {
             super();
             const render = this.render.bind(this);
             this.tagName = Object.getPrototypeOf(this).constructor.name;
-            this.render = (...args: unknown[]) => BaseComponent.prototype.render.call(this, {}, render(...args));
+            this.render = (props: unknown, ...args: unknown[]) =>
+                createElement(
+                    this.tagName as any,
+                    {},
+                    createElement(render, props, ...args),
+                );
         }
-        render(props: unknown, ...children: unknown[]): MetaFNode | MetaFChild {
-            // tslint:disable-next-line:no-any
-            return createElement(this.tagName as any, props, ...children);
-        }
+        abstract render(props: unknown, ...children: unknown[]): MetaFNode | MetaFChild;
     }
 
     // tslint:disable-next-line:no-any

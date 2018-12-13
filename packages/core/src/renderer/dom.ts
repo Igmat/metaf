@@ -1,3 +1,5 @@
+import { autorun } from '../atom';
+import { createElement } from '../JSX/createElement';
 import { MetaFSVG, svgTags } from '../JSX/SVG';
 import { MetaFChild, MetaFNode, Renderable } from '../JSX/types';
 import { runInSync } from '../sync/runInSync';
@@ -8,46 +10,55 @@ declare global {
     }
 }
 
+interface IInstanceHolder {
+    elements: (HTMLElement | SVGElement | Text)[];
+}
 type AppClass = new () => Renderable<{}, []>;
 export function renderToDOM(App: AppClass, node: HTMLElement) {
     runInSync(() => {
         const app = new App();
-        renderElement(app.render({}), node);
+        renderElement(createElement(app.render, {}), node, { elements: [] });
     });
 }
 
-function renderElement(element: MetaFNode | MetaFChild | null, node: HTMLElement | SVGElement) {
+function renderElement(element: MetaFNode | MetaFChild | null, node: HTMLElement | SVGElement, holder: IInstanceHolder): void {
     if (element === null) return;
-    if (Array.isArray(element)) {
-        element.forEach(elem => renderElement(elem, node));
-
-        return;
-    }
+    if (Array.isArray(element)) return element.forEach(elem => renderElement(elem, node, holder));
     if (typeof element === 'string' ||
         typeof element === 'number') {
-        if (node instanceof HTMLElement) {
-            node.innerText = element.toString();
-        } else {
-            node.textContent = element.toString();
-        }
+        const domElement = document.createTextNode(element.toString());
+        node.appendChild(domElement);
+        holder.elements.push(domElement);
 
         return;
     }
     if (typeof element.type === 'function') {
-        renderElement(
-            element.type(element.props, ...element.children),
-            node,
-        );
+        const { type } = element;
+        const fnHolder: IInstanceHolder = {
+            elements: [],
+        };
 
-        return;
+        return autorun(
+            () => renderElement(type(element.props, ...element.children), node, fnHolder),
+            () => {
+                fnHolder.elements.forEach(elem => elem.remove());
+                fnHolder.elements = [];
+            },
+        )();
     }
     if (typeof element.type === 'object') {
-        renderElement(
-            element.type.render(element.props, ...element.children),
-            node,
-        );
+        const { type } = element;
+        const fnHolder: IInstanceHolder = {
+            elements: [],
+        };
 
-        return;
+        return autorun(
+            () => renderElement(type.render(element.props, ...element.children), node, fnHolder),
+            () => {
+                fnHolder.elements.forEach(elem => elem.remove());
+                fnHolder.elements = [];
+            },
+        )();
     }
     const domElement = (svgTags.indexOf(element.type as keyof MetaFSVG) !== -1)
         ? window.document.createElementNS('http://www.w3.org/2000/svg', element.type)
@@ -55,14 +66,18 @@ function renderElement(element: MetaFNode | MetaFChild | null, node: HTMLElement
     const { props, children } = element;
     if (isDictionary(props)) {
         Object.keys(props)
-            .forEach(attrName =>
+            .map(attrName =>
                 (attrName || '').startsWith('on')
                     ? domElement.addEventListener(getEventName(attrName), ensureFn(props[attrName]))
                     : domElement.setAttribute(attrName, ensureString(props[attrName])));
     }
+    renderElement(children as MetaFNode, domElement, holder);
+
     node.appendChild(domElement);
-    renderElement(children as MetaFNode, domElement);
+
+    holder.elements.push(domElement);
 }
+
 function getEventName(value: string) {
     return value.slice(2).toLowerCase();
 }

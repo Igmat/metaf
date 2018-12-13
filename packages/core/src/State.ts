@@ -1,4 +1,5 @@
 import * as MetaFResolvable from 'metaf-resolvable';
+import { Observable } from './atom';
 import { Synchronous, syncService } from './sync/syncService';
 
 class MetafResolver extends MetaFResolvable.Resolver {
@@ -43,4 +44,4 @@ export interface IState {
     <R extends IRequirements = []>(...requirements: R): State;
 }
 
-export const State = MetaFResolvable.Resolvable() as IState;
+export const State = MetaFResolvable.Resolvable(Observable) as IState;
