@@ -21,12 +21,12 @@ const getHorizontalOffset = (x: number, y: number) =>
 const getVerticalOffset = (y: number) =>
     y * (hexSize.height - hexSide / 2);
 
-const Cell = ({ x = 0, y = 0 }) =>
-    (
+function Cell({ x = 0, y = 0, handler = (x = 0, y = 0) => { } }) {
+    return (
         <svg
             x={getHorizontalOffset(x, y)}
             y={getVerticalOffset(y)}
-            onClick={() => console.log(x, y)}
+            onClick={() => handler(x, y)}
         >
             <path
                 stroke="#000"
@@ -35,14 +35,26 @@ const Cell = ({ x = 0, y = 0 }) =>
             />
         </svg>
     );
-const Row = ({ length = 0, rowNumber = 0 }) =>
-    new Array(length).fill(0).map((val, index) => <Cell x={index} y={rowNumber} />);
+}
+function Row({ length = 0, rowNumber = 0, handler = (x = 0, y = 0) => { } }) {
+    return new Array(length)
+        .fill(0)
+        .map((val, index) =>
+            <Cell x={index} y={rowNumber} handler={handler} />);
+}
 
 export class Field extends Component() {
     private rows: number[];
+    private get Rows() {
+        return this.rows.map((row, index) =>
+            <Row length={row} rowNumber={index} handler={this.onCellClick} />);
+    }
     constructor() {
         super();
         this.rows = new Array(5).fill(0).map((value, index) => (index % 2) + 10);
+    }
+    onCellClick = (x = 0, y = 0) => {
+        this.rows = new Array(y + 1).fill(0).map((value, index) => (index % 2) + x + 1);
     }
     render() {
         return (
@@ -53,7 +65,7 @@ export class Field extends Component() {
                 height="300"
                 viewbox="0 0 600 300"
             >
-                {this.rows.map((row, index) => <Row length={row} rowNumber={index} />)}
+                {this.Rows}
             </svg>
         );
     }
