@@ -7,7 +7,7 @@ const { default: fetch } = require('node-fetch');
 
 const { repository } = require('../package.json');
 const { full_name } = gitUrlParse(repository.url);
-const releasesHref = `https://api.github.com/repos/${full_name}/releases`
+const releasesHref = `https://api.github.com/repos/${full_name.slice(1)}/releases`
 const GH_TOKEN = process.env.GH_TOKEN;
 
 async function publishToGithub() {
