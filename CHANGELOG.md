@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.34](https://github.com/Igmat/metaf/compare/v0.2.33...v0.2.34) (2019-05-11)
+
+
+### Bug Fixes
+
+* **core:** improve typings for better dev experience ([2696064](https://github.com/Igmat/metaf/commit/2696064))
+
+
+
+
+
 ## [0.2.33](https://github.com/Igmat/metaf/compare/v0.2.32...v0.2.33) (2018-11-16)
 
 
