@@ -1,6 +1,6 @@
 {
     "name": "metaf-sync",
-    "version": "0.2.34",
+    "version": "0.3.0",
     "description": "",
     "main": "dist/index.js",
     "private": true,
@@ -15,7 +15,7 @@
         "prepublish": "npm run doctoc"
     },
     "dependencies": {
-        "metaf-resolvable": "^0.2.33"
+        "metaf-resolvable": "^0.3.0"
     },
     "license": "MIT"
 }
