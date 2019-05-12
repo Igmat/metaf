@@ -169,7 +169,7 @@
         "no-for-in-array": true,
         "no-import-side-effect": false, // TODO: probably we have to restrict it with exceptions for assets and/or shims
         "no-inferrable-types": true,
-        "no-inferred-empty-object-type": true,
+        "no-inferred-empty-object-type": false, // TODO: probably true?
         "no-invalid-template-strings": true,
         "no-invalid-this": [
             true
