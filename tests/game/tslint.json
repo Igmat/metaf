@@ -1,0 +1,9 @@
+{
+    "extends": [
+        "../../tslint.json"
+    ],
+    "rules": {
+        "no-shadowed-variable": false,
+        "no-object-literal-type-assertion": false
+    }
+}

@@ -23,6 +23,7 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## What is it?
+Simple library for creating truly reusable react components, which won't require any additional gymnastics for theirs consumers by providing simple and straightforward `IoC`-container, with few additional features.
 
 ## Motivation
 

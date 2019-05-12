@@ -10,7 +10,7 @@
     },
     "license": "MIT",
     "scripts": {
-        "bootstrap": "lerna bootstrap",
+        "bootstrap": "lerna bootstrap --force-local",
         "postbootstrap": "node ./scripts/createBinSymlinks.js",
         "postinstall": "npm run bootstrap",
         "build": "lerna exec --scope metaf-* -- tsc -p .",
@@ -21,33 +21,31 @@
         "prerelease": "npm run doctoc",
         "release": "lerna publish --yes",
         "postrelease": "node ./scripts/publishGithubRelease.js",
-        "precommit": "lint-staged",
-        "commitmsg": "commitlint -e $GIT_PARAMS",
         "cz": "git-cz"
     },
     "devDependencies": {
-        "@commitlint/cli": "^7.1.2",
-        "@commitlint/config-conventional": "^7.1.2",
-        "@types/cross-spawn": "^6.0.0",
-        "@types/node": "^10.9.4",
-        "baset": "^0.13.7",
-        "baset-reader-ts": "0.13.7",
-        "baset-baseliner-md": "^0.14.0",
-        "commitizen": "^2.10.1",
-        "cross-spawn": "^6.0.5",
-        "cz-conventional-changelog": "^2.1.0",
-        "doctoc": "^1.3.1",
-        "greenkeeper-lockfile": "^1.15.1",
-        "git-url-parse": "^10.0.1",
-        "husky": "^0.14.3",
-        "lerna": "^3.4.0",
-        "lint-staged": "^7.2.2",
-        "node-fetch": "^2.2.0",
-        "npm-run-all": "^4.1.3",
-        "remark-parse": "^5.0.0",
-        "tslint": "^5.11.0",
-        "typescript": "^3.0.3",
-        "unified": "^7.0.0"
+        "@commitlint/cli": "7.6.1",
+        "@commitlint/config-conventional": "7.6.0",
+        "@types/cross-spawn": "6.0.0",
+        "@types/node": "10.14.6",
+        "baset": "0.14.8",
+        "baset-reader-ts": "0.14.7",
+        "baset-baseliner-md": "0.14.8",
+        "commitizen": "3.1.1",
+        "cross-spawn": "6.0.5",
+        "cz-conventional-changelog": "2.1.0",
+        "doctoc": "1.4.0",
+        "greenkeeper-lockfile": "1.15.1",
+        "git-url-parse": "10.1.0",
+        "husky": "1.3.1",
+        "lerna": "3.13.4",
+        "lint-staged": "7.3.0",
+        "node-fetch": "2.5.0",
+        "npm-run-all": "4.1.5",
+        "remark-parse": "5.0.0",
+        "tslint": "5.16.0",
+        "typescript": "3.1.6",
+        "unified": "7.1.0"
     },
     "config": {
         "commitizen": {
@@ -73,5 +71,11 @@
             "tslint --fix --force",
             "git add"
         ]
+    },
+    "husky": {
+        "hooks": {
+            "precommit": "lint-staged",
+            "commitmsg": "commitlint -e $GIT_PARAMS"
+        }
     }
 }

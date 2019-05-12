@@ -1,6 +1,6 @@
 import * as MetafResolvable from 'metaf-resolvable';
 import React, { ReactNode } from 'react';
-import { ApplicationRoot, IApplicationRootProps } from './ApplicationRoot';
+import { ApplicationRoot, config, IApplicationRootProps } from './ApplicationRoot';
 import { ReactResolver, resolver } from './Resolver';
 
 interface IRenderWrapper {
@@ -72,16 +72,23 @@ function resolveFor<I extends MetafResolvable.IInjections = {}>(
 let isResolverFnChangedToMock = false;
 
 /**
- * // TODO: comment MockRoot
- * @description Mock root
+ * Exactly same as `ApplicationRoot` with only difference:
+ * you are able to apply as many `MockRoot`s as your testing flow requires
+ * @description MockRoot component
+ * > **NOTE:** this component _MUST NOT_ be used as replacement for
+ * `ApplicationRoot` in your production code, since it significantly affects
+ * render flow in order to properly resolve dependencies for each subtree,
+ * which may cause performance issues in some circumstances.
+ * **BE AWARE THAT IT WAS DESIGNED FOR TESTING PUPOSES _ONLY_**
  */
 export class MockRoot extends ApplicationRoot {
 
     /**
      * Creates an instance of mock root.
-     * @param props
+     * @param props exactly same `props` as `ApplicationRoot` uses
      */
     constructor(props: Readonly<IApplicationRootProps>) {
+        config.shouldThrowForSeveralRoots = false;
         super(props);
         if (!isResolverFnChangedToMock) {
             resolver.resolveFor = resolveFor;
@@ -90,11 +97,6 @@ export class MockRoot extends ApplicationRoot {
         this.resolver = new ReactResolver(props.dependencies);
     }
 
-    /**
-     * // TODO: comment render
-     * @description Renders mock root
-     * @returns
-     */
     render() {
         return addPropsToAll(this.wrapInHocs(), this.resolver.resolveFor);
     }

@@ -3,20 +3,19 @@ import { Component } from 'react';
 import { HOC, IRequirementsOverride, resolver } from './Resolver';
 
 /**
- * // TODO: comment IApplicationRootProps
- * @description application root props
+ * @description ApplicationRoot props
  */
 export interface IApplicationRootProps {
 
     /**
-     * // TODO: comment dependencies
-     * @description
+     * Entities of this array meant to be built with `dependency` helper
+     * @description array of overrides for `dependencies`
      */
     dependencies: IOverrideResult[];
 
     /**
-     * // TODO: comment requirements
-     * @description
+     * Entities of this array meant to be built with `requirement` helper
+     * @description array of overrides for `requirements`
      */
     requirements: IRequirementsOverride[];
 }
@@ -24,16 +23,29 @@ export interface IApplicationRootProps {
 interface IApplicationRootState {
     hocs: HOC[];
 }
+/**
+ * @internal
+ */
+export const config = {
+    shouldThrowForSeveralRoots: true,
+};
+let applicationRootWasAdded = false;
 
 /**
- * // TODO: comment ApplicationRoot
- * @description Application root
+ * Component that is used for declaring overrides for `dependencies` and `requirements`.
+ * Also `requirements` HOCs applied to `render` method of this component in order to
+ * wrap you application tree for providing proper environment for your `ResolvableComponent`s
+ * @description ApplicationRoot Component
+ * > **NOTE:** `<ApplicationRoot>` is meant to appear only once in your app
+ * and in majority of cases it should be the first and only wrapper around
+ * your `App` component. Adding other `ApplicationRoot`s somewhere in your app
+ * won't affect dependency resolution mechanism but instead will throw an error
  */
 export class ApplicationRoot extends Component<IApplicationRootProps, IApplicationRootState> {
 
     /**
-     * // TODO: comment defaultProps
-     * @description Default props of application root
+     * by default there are no predefined `dependencies` or `requirements`
+     * @description default props of `ApplicationRoot` component
      */
     static defaultProps = {
         dependencies: [],
@@ -46,20 +58,20 @@ export class ApplicationRoot extends Component<IApplicationRootProps, IApplicati
 
     /**
      * Creates an instance of application root.
-     * @param props
+     * @param props contains overrides for `dependencies` and `requirements`
      */
     constructor(props: Readonly<IApplicationRootProps>) {
         super(props);
+        if (config.shouldThrowForSeveralRoots && applicationRootWasAdded) {
+            throw new Error("It's restricted to add more than one <ApplicationRoot>");
+        } else {
+            applicationRootWasAdded = true;
+        }
         this.resolver.setOverrides(props.dependencies);
         this.resolver.setRequirementsOverrides(props.requirements);
         this.resolver.subscribeForRequirements(this.requirementsUpdate);
     }
 
-    /**
-     * // TODO: comment render
-     * @description Renders application root
-     * @returns
-     */
     render() {
         return this.wrapInHocs();
     }

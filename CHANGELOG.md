@@ -3,6 +3,291 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.34](https://github.com/Igmat/metaf/compare/v0.2.33...v0.2.34) (2019-05-11)
+
+
+### Bug Fixes
+
+* **core:** improve typings for better dev experience ([2696064](https://github.com/Igmat/metaf/commit/2696064))
+
+
+
+
+
+## [0.2.33](https://github.com/Igmat/metaf/compare/v0.2.32...v0.2.33) (2018-11-16)
+
+
+### Bug Fixes
+
+* **core:** implement default component and state ([fc5ba4c](https://github.com/Igmat/metaf/commit/fc5ba4c))
+* **core:** implement dom renderer ([4b906d5](https://github.com/Igmat/metaf/commit/4b906d5))
+* **core:** improve synchronous typings ([af82b77](https://github.com/Igmat/metaf/commit/af82b77))
+* **resolvable:** change default parent and improve typings ([78c30ba](https://github.com/Igmat/metaf/commit/78c30ba))
+
+
+
+
+
+## [0.2.32](https://github.com/Igmat/metaf/compare/v0.2.31...v0.2.32) (2018-11-08)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+## [0.2.31](https://github.com/Igmat/metaf/compare/v0.2.30...v0.2.31) (2018-11-06)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+## [0.2.30](https://github.com/Igmat/metaf/compare/v0.2.29...v0.2.30) (2018-11-05)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+## [0.2.29](https://github.com/Igmat/metaf/compare/v0.2.28...v0.2.29) (2018-11-03)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+## [0.2.28](https://github.com/Igmat/metaf/compare/v0.2.27...v0.2.28) (2018-11-03)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+## [0.2.27](https://github.com/Igmat/metaf/compare/v0.2.26...v0.2.27) (2018-11-02)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+## [0.2.26](https://github.com/Igmat/metaf/compare/v0.2.25...v0.2.26) (2018-11-01)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+## [0.2.25](https://github.com/Igmat/metaf/compare/v0.2.24...v0.2.25) (2018-10-30)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+## [0.2.24](https://github.com/Igmat/metaf/compare/v0.2.23...v0.2.24) (2018-10-30)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+## [0.2.23](https://github.com/Igmat/metaf/compare/v0.2.22...v0.2.23) (2018-10-29)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+## [0.2.22](https://github.com/Igmat/metaf/compare/v0.2.21...v0.2.22) (2018-10-25)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+## [0.2.21](https://github.com/Igmat/metaf/compare/v0.2.20...v0.2.21) (2018-10-21)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+## [0.2.20](https://github.com/Igmat/metaf/compare/v0.2.19...v0.2.20) (2018-10-17)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+## [0.2.19](https://github.com/Igmat/metaf/compare/v0.2.18...v0.2.19) (2018-10-17)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+## [0.2.18](https://github.com/Igmat/metaf/compare/v0.2.17...v0.2.18) (2018-10-16)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+## [0.2.17](https://github.com/Igmat/metaf/compare/v0.2.16...v0.2.17) (2018-10-15)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+## [0.2.16](https://github.com/Igmat/metaf/compare/v0.2.15...v0.2.16) (2018-10-13)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+## [0.2.15](https://github.com/Igmat/metaf/compare/v0.2.14...v0.2.15) (2018-10-13)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+## [0.2.14](https://github.com/Igmat/metaf/compare/v0.2.13...v0.2.14) (2018-10-12)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+## [0.2.13](https://github.com/Igmat/metaf/compare/v0.2.12...v0.2.13) (2018-10-12)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+## [0.2.12](https://github.com/Igmat/metaf/compare/v0.2.11...v0.2.12) (2018-10-11)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+## [0.2.11](https://github.com/Igmat/metaf/compare/v0.2.10...v0.2.11) (2018-10-11)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+## [0.2.10](https://github.com/Igmat/metaf/compare/v0.2.9...v0.2.10) (2018-10-11)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+<a name="0.2.9"></a>
+## [0.2.9](https://github.com/Igmat/metaf/compare/v0.2.8...v0.2.9) (2018-10-11)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+<a name="0.2.8"></a>
+## [0.2.8](https://github.com/Igmat/metaf/compare/v0.2.7...v0.2.8) (2018-10-09)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+<a name="0.2.7"></a>
+## [0.2.7](https://github.com/Igmat/metaf/compare/v0.2.6...v0.2.7) (2018-10-09)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+<a name="0.2.6"></a>
+## [0.2.6](https://github.com/Igmat/metaf/compare/v0.2.5...v0.2.6) (2018-10-09)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+<a name="0.2.5"></a>
+## [0.2.5](https://github.com/Igmat/metaf/compare/v0.2.4...v0.2.5) (2018-10-09)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+<a name="0.2.4"></a>
+## [0.2.4](https://github.com/Igmat/metaf/compare/v0.2.3...v0.2.4) (2018-10-09)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+<a name="0.2.3"></a>
+## [0.2.3](https://github.com/Igmat/metaf/compare/v0.2.2...v0.2.3) (2018-10-09)
+
+**Note:** Version bump only for package metaf-root
+
+
+
+
+
+<a name="0.2.2"></a>
+## [0.2.2](https://github.com/Igmat/metaf/compare/v0.2.1...v0.2.2) (2018-10-04)
+
+
+### Bug Fixes
+
+* **react:** add jsdoc for all non-internal apis ([f6f8969](https://github.com/Igmat/metaf/commit/f6f8969))
+* **resolvable:** add jsdoc for all non-internal apis ([0bc4147](https://github.com/Igmat/metaf/commit/0bc4147))
+
+
+
+
+
 <a name="0.2.1"></a>
 ## [0.2.1](https://github.com/Igmat/metaf/compare/v0.2.0...v0.2.1) (2018-09-24)
 

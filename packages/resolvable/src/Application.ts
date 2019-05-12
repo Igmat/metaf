@@ -10,14 +10,7 @@ const application = {
 };
 
 /**
- * // TODO: comment resolveFor
- * @description Resolves for
- * @template I
- * @param instance
- * @param classImpl
- * @param [injections]
- * @param [args]
- * @returns for
+ * @internal
  */
 export function resolveFor<I extends IInjections = {}>(
     instance: object,
@@ -29,27 +22,22 @@ export function resolveFor<I extends IInjections = {}>(
 }
 
 /**
- * // TODO: comment resolveRequirements
- * @description Resolves requirements
- * @template I
- * @template C
- * @param requirements
- * @param classImpl
- * @returns
+ * @internal
  */
 export function resolveRequirements<I extends any[], C extends object>(requirements: I, classImpl: C) {
     return application.resolveRequirements(requirements, classImpl);
 }
 
 /**
- * // TODO: comment setResolverFn
- * @description Sets resolver fn
- * @param resolverForImpl
- * @param requirementsResolveImpl
+ * This function should be used **only** once and **only** for setting another resolution mechanism
+ * provided by some particular `Resolver` implementation for specific environment (e.g. for `react` app)
+ * @description Sets function that will be used by `Resolvable` as `resolveFor` and `resolveRequirements` global helpers
+ * @param resolveForImpl actual implementation of `resolveFor` function to replace default one
+ * @param requirementsResolveImpl actual implementation of `resolveRequirements` function to replace default one
  */
-export function setResolverFn(resolverForImpl: ResolveForFunction, requirementsResolveImpl: ResolveRequirementsFunction) {
+export function setResolverFn(resolveForImpl: ResolveForFunction, requirementsResolveImpl: ResolveRequirementsFunction) {
     if (application.isResolverChanged) throw new Error('Your application is trying to setup resolver more than once!');
-    application.resolveFor = resolverForImpl;
+    application.resolveFor = resolveForImpl;
     application.resolveRequirements = requirementsResolveImpl;
     application.isResolverChanged = true;
 }
