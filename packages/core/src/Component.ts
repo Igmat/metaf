@@ -18,7 +18,8 @@ export function Component<I extends IInjections = {}, R extends IRequirements = 
             super();
             const render = this.render.bind(this);
             this.tagName = Object.getPrototypeOf(this).constructor.name;
-            this.render = (...args: unknown[]) => BaseComponent.prototype.render.call(this, {}, render(...args));
+            this.render = (props: unknown, ...children: unknown[]) =>
+                BaseComponent.prototype.render.call(this, {}, render(props, children));
         }
         render(props: unknown, ...children: unknown[]): MetaFNode | MetaFChild {
             // tslint:disable-next-line:no-any
