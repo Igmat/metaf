@@ -1,4 +1,5 @@
-import { Constructable, IDependencies, IInjections, IOverrideResult, Resolver, setResolverFn } from 'metaf-resolvable';
+import { observe } from 'metaf-observable';
+import { Constructable, IDependencies, IInjections, Injectable, IOverrideResult, Resolver, setResolverFn } from 'metaf-resolvable';
 import { ReactNode } from 'react';
 
 export type HOC = (app: ReactNode) => JSX.Element;
@@ -15,7 +16,7 @@ const requirementsOverride = Symbol('Requirements Override');
  * @template T type of dependency that have to be overwritten
  * @template R
  */
-export interface IRequirementsOverride<T extends HOC = any, R extends T = T> {
+export interface IRequirementsOverride<T extends HOC = HOC, R extends T = T> {
     [requirementsOverride]: [T, R];
 }
 
@@ -75,8 +76,15 @@ export class ReactResolver extends Resolver {
     }
     subscribeForRequirements(subscriber: (requirements: HOC[]) => void) {
         this.requirementsSubscribers.push(subscriber);
-        // we also need to call subscriber with already existing requirements
-        subscriber(this.requirementsArray);
+
+        return this.requirementsArray;
+    }
+    initialize(obj: Injectable) {
+        const result = super.initialize(obj);
+
+        return (typeof result === 'object' && result !== null)
+            ? observe(result)
+            : result;
     }
 }
 

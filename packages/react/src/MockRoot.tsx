@@ -13,14 +13,14 @@ const resolveSymbol =
 const defaultResolver = new ReactResolver();
 
 function addPropsToAll(children: ReactNode, resolve: MetafResolvable.ResolveForFunction) {
-    function recursiveClone(child: React.ReactChild): React.ReactChild {
+    function recursiveClone(child: ReactNode): ReactNode {
         if (!React.isValidElement<any>(child)) return child;
         const resultingProps = typeof child.type === 'string'
             ? {}
             : { [resolveSymbol]: resolve };
         let newChild = child;
         if (typeof child.type === 'function') {
-            const renderFn = (child.type.prototype.render)
+            const renderFn = (child.type.prototype && child.type.prototype.render)
                 ? child.type.prototype.render // we are in class component
                 : child.type; // we are in single function component
             if (!renderWrappers.has(child.type)) {
@@ -38,7 +38,7 @@ function addPropsToAll(children: ReactNode, resolve: MetafResolvable.ResolveForF
 
                     return render(this, ...args);
                 };
-                if (child.type.prototype.render) child.type.prototype.render = renderReplacement;
+                if (child.type.prototype && child.type.prototype.render) child.type.prototype.render = renderReplacement;
                 else newChild = { ...child, type: renderReplacement };
                 renderWrappers.set((newChild as any).type, renderWrapper);
             }

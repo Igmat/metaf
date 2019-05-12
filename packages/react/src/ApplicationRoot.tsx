@@ -69,7 +69,8 @@ export class ApplicationRoot extends Component<IApplicationRootProps, IApplicati
         }
         this.resolver.setOverrides(props.dependencies);
         this.resolver.setRequirementsOverrides(props.requirements);
-        this.resolver.subscribeForRequirements(this.requirementsUpdate);
+        const hocs = this.resolver.subscribeForRequirements(this.requirementsUpdate);
+        this.state = { hocs };
     }
 
     render() {
@@ -90,10 +91,6 @@ export class ApplicationRoot extends Component<IApplicationRootProps, IApplicati
      * @internal
      */
     private requirementsUpdate = (requirements: HOC[]) => {
-        if (this.state) {
-            this.setState({ hocs: requirements });
-        } else {
-            this.state = { hocs: requirements };
-        }
+        this.setState({ hocs: requirements });
     }
 }
