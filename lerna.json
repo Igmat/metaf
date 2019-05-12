@@ -3,10 +3,10 @@
         "packages/*",
         "tests/*"
     ],
-    "version": "0.2.34",
+    "version": "0.2.35",
     "command": {
         "bootstrap": {
-          "hoist": "**"
+            "hoist": "**"
         },
         "publish": {
             "allowBranch": "master",
