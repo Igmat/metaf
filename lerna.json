@@ -5,6 +5,9 @@
     ],
     "version": "0.2.34",
     "command": {
+        "bootstrap": {
+          "hoist": "**"
+        },
         "publish": {
             "allowBranch": "master",
             "conventionalCommits": true,
