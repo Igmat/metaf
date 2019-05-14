@@ -1,5 +1,6 @@
 import { observe } from 'metaf-observable';
-import { Constructable, IDependencies, IInjections, Injectable, IOverrideResult, Resolver, setResolverFn } from 'metaf-resolvable';
+import * as MetafResolvable from 'metaf-resolvable';
+import { synchronous } from 'metaf-sync';
 import { ReactNode } from 'react';
 
 export type HOC = (app: ReactNode) => JSX.Element;
@@ -40,11 +41,11 @@ export function overrideRequirement<T extends HOC, R extends T>(key: T, value: R
 /**
  * @internal
  */
-export class ReactResolver extends Resolver {
+export class ReactResolver extends MetafResolvable.Resolver {
     private requirements = new Map<HOC, HOC>();
     private requirementsArray: HOC[] = [];
     private requirementsSubscribers: ((requirements: HOC[]) => void)[] = [];
-    setOverrides(overrides: IOverrideResult[]) {
+    setOverrides(overrides: MetafResolvable.IOverrideResult[]) {
         overrides.forEach(this.setOverride);
     }
     setRequirementsOverrides(overrides: IRequirementsOverride[]) {
@@ -79,11 +80,11 @@ export class ReactResolver extends Resolver {
 
         return this.requirementsArray;
     }
-    initialize(obj: Injectable) {
+    initialize(obj: MetafResolvable.Injectable) {
         const result = super.initialize(obj);
 
         return (typeof result === 'object' && result !== null)
-            ? observe(result)
+            ? synchronous(observe(result))
             : result;
     }
 }
@@ -108,11 +109,11 @@ export function resolveRequirements<
     C extends object = any>(requirements: R, componentImpl: C) {
     return resolver.resolveRequirements(requirements, componentImpl);
 }
-function resolveFor<I extends IInjections = {}>(
+function resolveFor<I extends MetafResolvable.IInjections = {}>(
     instance: object,
-    classImpl: Constructable,
+    classImpl: MetafResolvable.Constructable,
     injections?: I,
-    args?: any[]): IDependencies<I> {
+    args?: any[]): MetafResolvable.IDependencies<I> {
     return resolver.resolveFor(instance, classImpl, injections, args);
 }
-setResolverFn(resolveFor, resolveRequirements);
+MetafResolvable.setResolverFn(resolveFor, resolveRequirements);
