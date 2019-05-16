@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.8](https://github.com/Igmat/metaf/compare/v0.3.7...v0.3.8) (2019-05-16)
+
+
+### Bug Fixes
+
+* **react:** add reset of suspend cache after rerun ([4303689](https://github.com/Igmat/metaf/commit/4303689))
+* **react:** add State mixin export ([08b636e](https://github.com/Igmat/metaf/commit/08b636e))
+
+
+
+
+
 ## [0.3.7](https://github.com/Igmat/metaf/compare/v0.3.6...v0.3.7) (2019-05-15)
 
 **Note:** Version bump only for package metaf-react
