@@ -1,9 +1,9 @@
 {
   "name": "todo-react",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "private": true,
   "dependencies": {
-    "metaf-react": "^0.3.8",
+    "metaf-react": "^0.3.9",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
