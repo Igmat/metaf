@@ -17,29 +17,38 @@ type SynchronizedProperty<T> =
 export type Synchronous<I extends object> = {
     [P in keyof I]: SynchronizedProperty<I[P]>;
 };
-function synchronizeFunction<R, ARGS extends unknown[]>(
+export function synchronizeFunction<R, ARGS extends unknown[]>(
     method: TypedFunction<R, ARGS>,
-    originalThis: object): TypedFunction<AsyncPrimitivesWrapper<R>, ARGS> {
-    return (...args: ARGS) => {
+    originalThis?: object,
+    commonReceiver?: object,
+): TypedFunction<AsyncPrimitivesWrapper<R>, ARGS> {
+    const isContextProvided = originalThis !== undefined && commonReceiver !== undefined;
+
+    return function (this: unknown, ...args: ARGS) {
         if (!context.cache.has(method)) context.cache.set(method, {});
         const functionCache = context.cache.get(method) as { [arg: string]: R };
         const key = JSON.stringify(args);
-        if (!functionCache.hasOwnProperty(key)) functionCache[key] = method.call(originalThis, ...args);
+        const thisContext = (isContextProvided && this === commonReceiver)
+            ? originalThis
+            : this;
+        if (!functionCache.hasOwnProperty(key)) functionCache[key] = method.call(thisContext, ...args);
 
         return sync(functionCache[key]);
     };
 }
 export function synchronous<I extends object>(obj: I): Synchronous<I> {
-    return new Proxy(obj, {
+    const synchronousObj = new Proxy(obj, {
         get(target, p, receiver) {
             const result = Reflect.get(target, p, receiver);
 
             return isFunction(result)
-                ? synchronizeFunction(result, obj)
+                ? synchronizeFunction(result, obj, synchronousObj)
                 : (result instanceof Promise)
                     ? sync(result)
                     : result;
         },
     }) as Synchronous<I>;
+
+    return synchronousObj;
 }
 
