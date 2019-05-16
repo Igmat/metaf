@@ -26,12 +26,12 @@ export function autorun<T>(observableFn: () => T, { rerun, clear }: IAutorunOpti
                     toRun = [];
                 });
             }
-            if (val && toRun.indexOf(exec) === -1) {
+            if (val && toRun.indexOf(rerun || exec) === -1) {
                 toRun.push(rerun || exec);
             }
         },
         source: observableFn,
-        p: '',
+        name: '',
     };
 
     return exec;

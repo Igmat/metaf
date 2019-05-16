@@ -1,8 +1,8 @@
 import { ITransaction } from './mutations';
-import { observe } from './observe';
+import { observeObj } from './observe';
 
 export class Observable {
     constructor(onSet?: (tx: ITransaction) => void) {
-        return observe(this, onSet);
+        return observeObj(this, onSet);
     }
 }

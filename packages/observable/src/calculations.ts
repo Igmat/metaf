@@ -9,7 +9,7 @@ function unlinkDependencies(prevDependencies: IAtom[], atom: IAtom) {
         .filter(dependency => atom.dependencies.indexOf(dependency) === -1)
         .forEach(dependency => dependency.dependents.splice(dependency.dependents.indexOf(atom), 1));
 }
-function linkToCalculated(atom: IAtom) {
+export function linkToCalculated(atom: IAtom) {
     if (calculatedAtoms.length > 0) {
         const caller = calculatedAtoms[calculatedAtoms.length - 1];
         if (caller.dependencies.indexOf(atom) === -1) {
