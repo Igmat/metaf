@@ -1,10 +1,9 @@
 import { autorun } from 'metaf-observable';
 import { AbstractResolvable, IInjections, Resolvable } from 'metaf-resolvable';
-import { PromiseCache } from 'metaf-sync';
+import { context, PromiseCache } from 'metaf-sync';
 import React from 'react';
 import { IRequirements } from './Resolver';
 import { ISyncDependencies } from './State';
-import { SynchronousHOC } from './Synchronous';
 
 export type Component<I extends IInjections = {}> =
     new <P = {}, S = {}, SS = any>(props: Readonly<P>) => AbstractResolvable<ISyncDependencies<I>> & React.Component<P, S, SS>;
@@ -37,23 +36,28 @@ const ReactComponent = Resolvable(React.Component) as IComponent;
  * @description Component factory
  */
 export const Component = (<I extends IInjections = {}, R extends IRequirements = []>(injections: I, ...requirements: R) => {
-    class BaseComponent<P> extends ReactComponent(injections, SynchronousHOC, ...requirements)<P> {
+    class BaseComponent<P> extends ReactComponent(injections, ...requirements)<P> {
         constructor(props: Readonly<P>) {
             super(props);
             const originalRender = this.render.bind(this);
             const rerun = this.forceUpdate.bind(this);
-            const render = () => {
+            const render = autorun(originalRender, {
+                rerun,
+            });
+
+            this.render = () => {
                 try {
-                    return originalRender();
+                    return render();
                 } catch (err) {
                     if (!(err instanceof PromiseCache)) throw err;
 
-                    throw err.resolved;
+                    err.resolved
+                        .then(() => rerun(() => context.cache = new WeakMap()))
+                        .catch(innerError => { throw innerError; });
+
+                    return null;
                 }
             };
-            this.render = autorun(render, {
-                rerun,
-            });
         }
     }
 
