@@ -1,6 +1,6 @@
 {
     "name": "metaf-resolvable",
-    "version": "0.3.42",
+    "version": "0.3.43",
     "description": "Abstract resolvable mixin and injection root for adding DI/IoC to any framework",
     "keywords": [
         "DI",
