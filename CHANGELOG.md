@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.11](https://github.com/Igmat/metaf/compare/v0.3.10...v0.3.11) (2019-05-17)
+
+
+### Bug Fixes
+
+* **solution:** actually build packages before publish ([fa02bcd](https://github.com/Igmat/metaf/commit/fa02bcd))
+
+
+
+
+
 ## [0.3.10](https://github.com/Igmat/metaf/compare/v0.3.9...v0.3.10) (2019-05-17)
 
 **Note:** Version bump only for package metaf-root
