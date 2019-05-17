@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.16](https://github.com/Igmat/metaf/compare/v0.3.15...v0.3.16) (2019-05-17)
+
+**Note:** Version bump only for package metaf-observable
+
+
+
+
+
 ## [0.3.15](https://github.com/Igmat/metaf/compare/v0.3.14...v0.3.15) (2019-05-17)
 
 **Note:** Version bump only for package metaf-observable
