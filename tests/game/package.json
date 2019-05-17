@@ -1,6 +1,6 @@
 {
     "name": "game",
-    "version": "0.3.21",
+    "version": "0.3.22",
     "private": true,
     "description": "",
     "author": "Ihor Chulinda <ichulinda@gmail.com>",
@@ -14,7 +14,7 @@
         "build": "webpack"
     },
     "dependencies": {
-        "metaf-core": "^0.3.21"
+        "metaf-core": "^0.3.22"
     },
     "devDependencies": {
         "clean-webpack-plugin": "^1.0.0",
