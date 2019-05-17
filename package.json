@@ -18,7 +18,7 @@
         "test": "lerna link && baset",
         "accept": "baset a",
         "doctoc": "doctoc README.md docs/CONTRIBUTING.md",
-        "prerelease": "npm run doctoc",
+        "prerelease": "npm run build && npm run doctoc",
         "release": "lerna publish --yes",
         "postrelease": "node ./scripts/publishGithubRelease.js",
         "cz": "git-cz"
