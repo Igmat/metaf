@@ -1,6 +1,6 @@
 {
     "name": "metaf-react",
-    "version": "0.3.13",
+    "version": "0.3.14",
     "description": "Resolvable component and injection root for adding DI/IoC to React App",
     "keywords": [
         "react",
@@ -27,9 +27,9 @@
         "prepublish": "npm run doctoc"
     },
     "dependencies": {
-        "metaf-observable": "^0.3.13",
-        "metaf-resolvable": "^0.3.13",
-        "metaf-sync": "^0.3.13",
+        "metaf-observable": "^0.3.14",
+        "metaf-resolvable": "^0.3.14",
+        "metaf-sync": "^0.3.14",
         "react-is": "^16.8.6"
     },
     "peerDependencies": {
