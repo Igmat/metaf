@@ -3,7 +3,7 @@
         "packages/*",
         "tests/*"
     ],
-    "version": "0.3.27",
+    "version": "0.3.28",
     "command": {
         "bootstrap": {
             "hoist": "**"
