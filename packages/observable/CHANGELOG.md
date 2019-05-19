@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.52](https://github.com/Igmat/metaf/compare/v0.3.51...v0.3.52) (2019-05-19)
+
+
+### Bug Fixes
+
+* **observable:** exclude false positive check for atom existence ([6e3b139](https://github.com/Igmat/metaf/commit/6e3b139))
+
+
+
+
+
 ## [0.3.50](https://github.com/Igmat/metaf/compare/v0.3.49...v0.3.50) (2019-05-17)
 
 **Note:** Version bump only for package metaf-observable
