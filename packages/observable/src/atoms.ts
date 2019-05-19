@@ -21,14 +21,14 @@ export function getAtomCreator(obj: Function | object) {
         [index: number]: IAtom | undefined;
     } = {};
     const createAtomIfNotExists = <V>(p: string | number, value?: V) => {
-        const pName = (p === 'constructor')
-            ? 'constructorHolder'
-            : p;
-        const existingAtom = objAtoms[pName];
+        const hasOwn = Object.prototype.hasOwnProperty.call(objAtoms, p);
+        const existingAtom = hasOwn
+            ? objAtoms[p]
+            : undefined;
 
         return existingAtom !== undefined
             ? existingAtom
-            : objAtoms[pName] = {
+            : objAtoms[p] = {
                 source: obj,
                 name: p,
                 dependencies: [],
