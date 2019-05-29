@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.57](https://github.com/Igmat/metaf/compare/v0.3.56...v0.3.57) (2019-05-29)
+
+**Note:** Version bump only for package todo-react
+
+
+
+
+
 ## [0.3.56](https://github.com/Igmat/metaf/compare/v0.3.55...v0.3.56) (2019-05-27)
 
 **Note:** Version bump only for package todo-react
