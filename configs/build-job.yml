@@ -19,7 +19,7 @@ jobs:
     maxParallel: 4
 
   steps:
-  - template: configs/build-steps.yml
+  - template: build-steps.yml
     parameters:
       node_version: $(node_version)
 
