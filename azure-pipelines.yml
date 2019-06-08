@@ -1,0 +1,40 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- master
+pr:
+- master
+
+jobs:
+- template: configs/build-job.yml
+  parameters:
+    name: macOS
+    vmImage: 'macOS-10.13'
+
+- template: configs/build-job.yml
+  parameters:
+    name: Linux
+    vmImage: 'ubuntu-16.04'
+
+- template: configs/build-job.yml
+  parameters:
+    name: Windows
+    vmImage: 'vs2017-win2016'
+
+- job: Release
+  dependsOn:
+  - macOS
+  - Linux
+  - Windows
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+  pool:
+    vmImage: 'ubuntu-16.04'
+  steps:
+  - template: configs/build-steps.yml
+    parameters:
+      node_version: 11.x
+  - script: npm run release
+    displayName: 'Publish'
