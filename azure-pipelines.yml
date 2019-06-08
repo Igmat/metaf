@@ -12,17 +12,29 @@ jobs:
 - template: configs/build-job.yml
   parameters:
     name: macOS
-    pool:
-      vmImage: 'macOS-10.13'
+    vmImage: 'macOS-10.13'
 
 - template: configs/build-job.yml
   parameters:
     name: Linux
-    pool:
-      vmImage: 'ubuntu-16.04'
+    vmImage: 'ubuntu-16.04'
 
 - template: configs/build-job.yml
   parameters:
     name: Windows
-    pool:
-      vmImage: 'vs2017-win2016'
+    vmImage: 'vs2017-win2016'
+
+- job: Release
+  dependsOn:
+  - macOS
+  - Linux
+  - Windows
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+  pool:
+    vmImage: 'ubuntu-16.04'
+  steps:
+  - template: configs/build-steps.yml
+    parameters:
+      node_version: 11.x
+  - script: npm run release
+    displayName: 'Publish'
