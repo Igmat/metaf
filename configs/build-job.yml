@@ -1,0 +1,40 @@
+parameters:
+  name: ''
+  pool: ''
+
+jobs:
+- job: ${{ parameters.name }}
+  pool: ${{ parameters.pool }}
+  strategy:
+    matrix:
+      node_v8:
+        node_version: 8.x
+      node_v9:
+        node_version: 9.x
+      node_v10:
+        node_version: 10.x
+      node_v11:
+        node_version: 11.x
+    maxParallel: 4
+
+  steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: $(node_version)
+    displayName: 'Install Node.js'
+
+  - script: npm ci
+    displayName: 'Install dependencies'
+
+  - script: npm run build
+    displayName: 'Build'
+
+  - script: |
+      npm run test:ci
+    displayName: 'Test'
+
+  - task: PublishTestResults@2
+    condition: succeededOrFailed()
+    inputs:
+      testRunner: JUnit
+      testResultsFiles: 'tests/tap.xml'

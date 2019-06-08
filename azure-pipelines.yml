@@ -8,33 +8,21 @@ trigger:
 pr:
 - master
 
-strategy:
-  matrix:
-    linux:
-      imageName: "ubuntu-16.04"
-      node_version: 8.x
-    mac:
-      imageName: "macos-10.13"
-      node_version: 8.x
-    windows:
-      imageName: "vs2017-win2016"
-      node_version: 8.x
-  maxParallel: 3
+jobs:
+- template: configs/build-job.yml
+  parameters:
+    name: macOS
+    pool:
+      vmImage: 'macOS-10.13'
 
-pool:
-  vmImage: $(imageName)
+- template: configs/build-job.yml
+  parameters:
+    name: Linux
+    pool:
+      vmImage: 'ubuntu-16.04'
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: $(node_version)
-  displayName: 'Install Node.js'
-
-- script: |
-    npm ci
-    npm run build
-  displayName: 'npm install and build'
-
-- script: |
-    npm test
-  displayName: 'Test'
+- template: configs/build-job.yml
+  parameters:
+    name: Windows
+    pool:
+      vmImage: 'vs2017-win2016'
