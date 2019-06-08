@@ -1,24 +1,15 @@
-import * as MetaFResolvable from 'metaf-resolvable';
-import { Synchronous, syncService } from './sync/syncService';
+import { Observable } from 'metaf-observable';
+import { AbstractResolvable, Constructable, IInjections, Resolvable } from 'metaf-resolvable';
+import { Synchronous } from 'metaf-sync';
 
-class MetafResolver extends MetaFResolvable.Resolver {
-    initialize(obj: MetaFResolvable.Injectable) {
-        if (MetaFResolvable.isConstructor(obj)) return syncService(obj);
-        if (MetaFResolvable.isCallable(obj)) return obj();
-        throw new Error(`Dependency expected to be constructable or callable, but got ${typeof obj}`);
-
-    }
-}
-const appResolver = new MetafResolver();
-MetaFResolvable.setResolverFn(appResolver.resolveFor, appResolver.resolveRequirements);
-export type IRequirements = any[];
-export type ISyncDependencies<T extends MetaFResolvable.IInjections> = {
-    [K in keyof T]: T[K] extends MetaFResolvable.Constructable
+export type IRequirements = unknown[];
+export type ISyncDependencies<T extends IInjections> = {
+    [K in keyof T]: T[K] extends Constructable
     ? new() => Synchronous<InstanceType<T[K]>>
     : T[K];
 };
-export type State<I extends MetaFResolvable.IInjections = {}> =
-    new () => MetaFResolvable.AbstractResolvable<ISyncDependencies<I>>;
+export type State<I extends IInjections = {}> =
+    new () => AbstractResolvable<ISyncDependencies<I>>;
 
 export interface IState {
     /**
@@ -31,7 +22,7 @@ export interface IState {
      * @param requirements dependencies that should exist in code that use this component
      * @returns react `Component` class to extend
      */
-    <I extends MetaFResolvable.IInjections = {}, R extends IRequirements = []>(injections: I, ...requirements: R): State<I>;
+    <I extends IInjections = {}, R extends IRequirements = []>(injections: I, ...requirements: R): State<I>;
     /**
      * Resolvable component factory
      * @description creates new class without `dependencies` but with
@@ -43,4 +34,4 @@ export interface IState {
     <R extends IRequirements = []>(...requirements: R): State;
 }
 
-export const State = MetaFResolvable.Resolvable() as IState;
+export const State = Resolvable(Observable) as IState;

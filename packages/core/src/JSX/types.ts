@@ -6,10 +6,9 @@ import { MetaFSVG } from './SVG';
 // ----------------------------------------------------------------------
 // `any` used here, because all other types won't allow TS to properly narrow the type based on usage
 // could be probably fixed by future versions of TS, which will use createElement signature for JSX
-// tslint:disable-next-line:no-any
-export type SFC<P extends object = any, C extends unknown[] = any[]> = (props: P, ...children: C) => MetaFNode | MetaFChild | null;
-// tslint:disable-next-line:no-any
-export interface Renderable<P extends object = any, C extends unknown[] = any[]> {
+export type SFC<P extends object = object, C extends unknown[] = unknown[]> = (props: P, ...children: C) => MetaFNode | MetaFChild | null;
+
+export interface Renderable<P extends object = object, C extends unknown[] = unknown[]> {
     render: SFC<P, C>;
 }
 //
@@ -24,7 +23,7 @@ export type InferProps<T extends RenderableType> =
     ? ComponentProps
     : T extends SFC<infer SFCProps, infer SFCChild>
     ? SFCProps
-    : {};
+    : object;
 export type InferChild<T extends RenderableType> =
     T extends keyof MetaFHTML | MetaFSVG
     ? MetaFNode
@@ -32,12 +31,13 @@ export type InferChild<T extends RenderableType> =
     ? ComponentChild
     : T extends SFC<infer SFCProps, infer SFCChild>
     ? SFCChild
-    : never[];
+    : unknown[];
 export type RenderableType =
     SFC |
     Renderable |
     keyof MetaFHTML |
-    keyof MetaFSVG;
+    keyof MetaFSVG |
+    string;
 export interface MetaFElement<T extends RenderableType = RenderableType> {
     type: T;
     props: InferProps<T>;

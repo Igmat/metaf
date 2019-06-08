@@ -16,7 +16,9 @@
     },
     "dependencies": {
         "csstype": "^2.6.4",
-        "metaf-resolvable": "^0.3.50"
+        "metaf-resolvable": "^0.3.50",
+        "metaf-observable": "^0.3.52",
+        "metaf-sync": "^0.3.50"
     },
     "license": "MIT"
 }
