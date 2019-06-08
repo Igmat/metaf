@@ -6,10 +6,10 @@ export type ResolveForFunction = <I extends IInjections = {}>(
     instance: object,
     classImpl: Constructable,
     injections?: I,
-    args?: any[],
+    args?: unknown[],
 ) => IDependencies<I>;
 
-export type ResolveRequirementsFunction = <R extends any[] = [], C extends object = any>(requirements: R, classImpl: C) => C;
+export type ResolveRequirementsFunction = <R extends unknown[] = [], C extends object = object>(requirements: R, classImpl: C) => C;
 
 // we are using private symbol in order to force users work with override function
 // so override always type compatible with original value
@@ -52,13 +52,13 @@ export class Resolver {
      * WeakMap where `key` points to resolved and initialized and resolved `dependency`
      * @description map of all resolved dependencies
      */
-    protected injectionRoot: WeakMap<Injectable, any>;
+    protected injectionRoot: WeakMap<Injectable, unknown>;
 
     /**
      * WeakMap where `key` is resolvable class and `value` is object with resolved `dependencies`
      * @description resolved dependencies for resolvable class implementations
      */
-    protected implementations: WeakMap<Constructable, any>;
+    protected implementations: WeakMap<Constructable, unknown>;
 
     /**
      * Creates an instance of resolver.
@@ -105,12 +105,13 @@ export class Resolver {
         instance: object,
         classImpl: Constructable,
         injections: I = {} as I,
-        args: any[] = [],
+        args: unknown[] = [],
     ): IDependencies<I> {
-        if (this.implementations.has(classImpl)) return this.implementations.get(classImpl);
+        if (this.implementations.has(classImpl)) return this.implementations.get(classImpl) as IDependencies<I>;
 
         const resolvedDependencies = {} as IDependencies<I>;
-        Object.keys(injections)
+        // TODO: remove this cast once Object.keys typings would be fixed
+        (Object.keys(injections) as (keyof I)[])
             .forEach(injectionName =>
                 resolvedDependencies[injectionName] = this.inject(injections[injectionName]) as Injected<I[string]>);
         this.implementations.set(classImpl, resolvedDependencies);
@@ -147,7 +148,7 @@ export class Resolver {
                 this.initialize(injectionKey));
         }
 
-        return this.injectionRoot.get(injectionKey);
+        return this.injectionRoot.get(injectionKey) as Injected<T>;
     }
 
     /**
