@@ -42,6 +42,8 @@ jobs:
     inputs:
       versionSpec: 11.x
     displayName: 'Install Node.js'
+  - script: npm install
+    displayName: 'Install dependencies'
   - script: |
       git config --global user.email "ichulinda@gmail.com"
       git config --global user.name "Igmat (Azure DevOps)"
