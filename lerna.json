@@ -11,6 +11,7 @@
         "publish": {
             "allowBranch": "master",
             "conventionalCommits": true,
+            "githubRelease": true,
             "private": false,
             "ignoreChanges": [
                 "*.md",

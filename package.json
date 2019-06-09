@@ -21,7 +21,6 @@
         "doctoc": "doctoc README.md docs/CONTRIBUTING.md",
         "prerelease": "npm run build && npm run doctoc",
         "release": "lerna publish --yes",
-        "postrelease": "node ./scripts/publishGithubRelease.js",
         "cz": "git-cz"
     },
     "devDependencies": {

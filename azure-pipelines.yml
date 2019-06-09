@@ -51,6 +51,8 @@ jobs:
       git checkout master
     displayName: 'Configure git'
   - task: Npm@1
+    env:
+        GH_TOKEN: $(github.token)
     inputs:
       command: 'custom'
       customCommand: 'run release'
