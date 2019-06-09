@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Igmat/metaf/compare/v0.3.61...v0.4.0) (2019-06-09)
+
+
+### Bug Fixes
+
+* **react:** minor typings fixes ([c95af19](https://github.com/Igmat/metaf/commit/c95af19))
+* **react:** update lock-file ([28397b0](https://github.com/Igmat/metaf/commit/28397b0))
+
+
+
+
+
 ## [0.3.61](https://github.com/Igmat/metaf/compare/v0.3.60...v0.3.61) (2019-06-06)
 
 **Note:** Version bump only for package metaf-react

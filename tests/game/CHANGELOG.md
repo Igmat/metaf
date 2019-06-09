@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Igmat/metaf/compare/v0.3.61...v0.4.0) (2019-06-09)
+
+
+### Bug Fixes
+
+* **core:** use sync and observable packages ([931db45](https://github.com/Igmat/metaf/commit/931db45))
+
+
+
+
+
 ## [0.3.50](https://github.com/Igmat/metaf/compare/v0.3.49...v0.3.50) (2019-05-17)
 
 **Note:** Version bump only for package game

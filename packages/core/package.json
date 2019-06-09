@@ -1,6 +1,6 @@
 {
     "name": "metaf-core",
-    "version": "0.3.50",
+    "version": "0.4.0",
     "description": "",
     "main": "dist/index.js",
     "private": true,
@@ -16,9 +16,9 @@
     },
     "dependencies": {
         "csstype": "^2.6.4",
-        "metaf-resolvable": "^0.3.50",
-        "metaf-observable": "^0.3.52",
-        "metaf-sync": "^0.3.50"
+        "metaf-observable": "^0.4.0",
+        "metaf-resolvable": "^0.4.0",
+        "metaf-sync": "^0.4.0"
     },
     "license": "MIT"
 }

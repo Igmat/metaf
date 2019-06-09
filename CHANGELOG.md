@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Igmat/metaf/compare/v0.3.61...v0.4.0) (2019-06-09)
+
+
+### Bug Fixes
+
+* **core:** update renderer to fit atoms ([84efc5a](https://github.com/Igmat/metaf/commit/84efc5a))
+* **react:** minor typings fixes ([c95af19](https://github.com/Igmat/metaf/commit/c95af19))
+* **react:** update lock-file ([28397b0](https://github.com/Igmat/metaf/commit/28397b0))
+* **resolvable:** change types for better inference ([98e0c1d](https://github.com/Igmat/metaf/commit/98e0c1d))
+* **resolvable:** use better types ([d875642](https://github.com/Igmat/metaf/commit/d875642))
+
+
+### Features
+
+* **core:** implement simple atom ([2cc2faa](https://github.com/Igmat/metaf/commit/2cc2faa))
+
+
+
+
+
 ## [0.3.61](https://github.com/Igmat/metaf/compare/v0.3.60...v0.3.61) (2019-06-06)
 
 **Note:** Version bump only for package metaf-root
