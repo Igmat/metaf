@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/Igmat/metaf/compare/v0.4.0...v0.4.1) (2019-06-09)
+
+
+### Bug Fixes
+
+* **core:** change styles for linter ([c2b5004](https://github.com/Igmat/metaf/commit/c2b5004))
+
+
+
+
+
 # [0.4.0](https://github.com/Igmat/metaf/compare/v0.3.61...v0.4.0) (2019-06-09)
 
 
