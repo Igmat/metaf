@@ -45,7 +45,7 @@
         "remark-parse": "5.0.0",
         "tap-junit": "3.1.0",
         "tslint": "5.17.0",
-        "typescript": "3.4.5",
+        "typescript": "3.5.1",
         "unified": "7.1.0"
     },
     "config": {
