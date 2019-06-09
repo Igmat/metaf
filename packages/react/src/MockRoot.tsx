@@ -2,6 +2,7 @@ import * as MetafResolvable from 'metaf-resolvable';
 import React, { ReactNode } from 'react';
 import { ApplicationRoot, config, IApplicationRootProps } from './ApplicationRoot';
 import { ReactResolver, resolver } from './Resolver';
+// tslint:disable: no-unsafe-any
 
 interface IRenderWrapper {
     originalRender: Function;
@@ -33,7 +34,7 @@ function addPropsToAll(children: ReactNode, resolve: MetafResolvable.ResolveForF
                     const props = (this === undefined)
                         ? args[0] // we are in single function component, so props are in args
                         : this.props; // we are in component, so props are in this
-                    const { [resolveSymbol]: particularResolver = defaultResolver.resolveFor } = props;
+                    const { [resolveSymbol]: particularResolver = defaultResolver.resolveFor.bind(defaultResolver) } = props;
                     const render = renderWrapper.renders.get(particularResolver) || renderWrapper.originalRender.bind(this);
 
                     return render(this, ...args);
@@ -64,7 +65,7 @@ function resolveFor<I extends MetafResolvable.IInjections = {}>(
     args: any[] = [],
 ): MetafResolvable.IDependencies<I> {
     const [props] = args;
-    const { [resolveSymbol]: resolve = defaultResolver.resolveFor } = props;
+    const { [resolveSymbol]: resolve = defaultResolver.resolveFor.bind(defaultResolver) } = props;
 
     return resolve(instance, classImpl, injections, args);
 }
@@ -98,6 +99,6 @@ export class MockRoot extends ApplicationRoot {
     }
 
     render() {
-        return addPropsToAll(this.wrapInHocs(), this.resolver.resolveFor);
+        return addPropsToAll(this.wrapInHocs(), this.resolver.resolveFor.bind(this.resolver));
     }
 }

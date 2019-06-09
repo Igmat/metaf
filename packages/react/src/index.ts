@@ -5,4 +5,3 @@ export { defineRequirement } from './defineRequirement';
 export { MockRoot } from './MockRoot';
 export { overrideRequirement as requirement, resolveRequirements as withRequirements } from './Resolver';
 export { State } from './State';
-
