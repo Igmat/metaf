@@ -38,14 +38,16 @@ jobs:
   pool:
     vmImage: 'ubuntu-16.04'
   steps:
-  - template: configs/build-steps.yml
-    parameters:
-      node_version: 11.x
+  - task: NodeTool@0
+    inputs:
+      versionSpec: 11.x
+    displayName: 'Install Node.js'
   - script: |
       git config --global user.email "ichulinda@gmail.com"
       git config --global user.name "Igmat (Azure DevOps)"
       git remote set-url origin https://$(github.token)@github.com/Igmat/metaf.git > /dev/null 2>&1
       git checkout master
+    displayName: 'Configure git'
   - task: Npm@1
     inputs:
       command: 'custom'
