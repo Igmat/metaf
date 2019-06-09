@@ -38,6 +38,27 @@ export interface CompositionEvent<T = Element> extends SyntheticEvent<T> {
     data: string;
     nativeEvent: NativeEvents.NativeCompositionEvent;
 }
+export interface MouseEvent<T = Element> extends SyntheticEvent<T> {
+    altKey: boolean;
+    button: number;
+    buttons: number;
+    clientX: number;
+    clientY: number;
+    ctrlKey: boolean;
+    metaKey: boolean;
+    nativeEvent: NativeEvents.NativeMouseEvent;
+    pageX: number;
+    pageY: number;
+    relatedTarget: EventTarget;
+    screenX: number;
+    screenY: number;
+    shiftKey: boolean;
+    /**
+     * See [DOM Level 3 Events spec](https://www.w3.org/TR/uievents-key/#keys-modifier).
+     * for a list of valid (case-sensitive) arguments to this method.
+     */
+    getModifierState(key: string): boolean;
+}
 export interface DragEvent<T = Element> extends MouseEvent<T> {
     dataTransfer: DataTransfer;
     nativeEvent: NativeEvents.NativeDragEvent;
@@ -80,27 +101,6 @@ export interface KeyboardEvent<T = Element> extends SyntheticEvent<T> {
     repeat: boolean;
     shiftKey: boolean;
     which: number;
-    /**
-     * See [DOM Level 3 Events spec](https://www.w3.org/TR/uievents-key/#keys-modifier).
-     * for a list of valid (case-sensitive) arguments to this method.
-     */
-    getModifierState(key: string): boolean;
-}
-export interface MouseEvent<T = Element> extends SyntheticEvent<T> {
-    altKey: boolean;
-    button: number;
-    buttons: number;
-    clientX: number;
-    clientY: number;
-    ctrlKey: boolean;
-    metaKey: boolean;
-    nativeEvent: NativeEvents.NativeMouseEvent;
-    pageX: number;
-    pageY: number;
-    relatedTarget: EventTarget;
-    screenX: number;
-    screenY: number;
-    shiftKey: boolean;
     /**
      * See [DOM Level 3 Events spec](https://www.w3.org/TR/uievents-key/#keys-modifier).
      * for a list of valid (case-sensitive) arguments to this method.

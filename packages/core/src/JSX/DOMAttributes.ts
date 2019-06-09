@@ -362,9 +362,6 @@ export interface AnchorHTMLAttributes<T> extends HTMLAttributes<T> {
     target?: string;
     type?: string;
 }
-// tslint:disable-next-line:no-empty-interface
-export interface AudioHTMLAttributes<T> extends MediaHTMLAttributes<T> {
-}
 export interface AreaHTMLAttributes<T> extends HTMLAttributes<T> {
     alt?: string;
     coords?: string;
@@ -549,6 +546,9 @@ export interface MediaHTMLAttributes<T> extends HTMLAttributes<T> {
     playsinline?: boolean;
     preload?: string;
     src?: string;
+}
+// tslint:disable-next-line:no-empty-interface
+export interface AudioHTMLAttributes<T> extends MediaHTMLAttributes<T> {
 }
 export interface MetaHTMLAttributes<T> extends HTMLAttributes<T> {
     charSet?: string;
