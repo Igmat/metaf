@@ -4,9 +4,9 @@ import { Constructable } from './utils';
 
 const resolver = new Resolver();
 const application = {
-    resolveFor: resolver.resolveFor,
-    resolveRequirements: resolver.resolveRequirements,
     isResolverChanged: false,
+    resolveFor: resolver.resolveFor.bind(resolver),
+    resolveRequirements: resolver.resolveRequirements.bind(resolver),
 };
 
 /**
@@ -16,7 +16,7 @@ export function resolveFor<I extends IInjections = {}>(
     instance: object,
     classImpl: Constructable,
     injections: I = {} as I,
-    args: any[] = [],
+    args: unknown[] = [],
 ): IDependencies<I> {
     return application.resolveFor(instance, classImpl, injections, args);
 }

@@ -9,7 +9,7 @@ export type ResolveForFunction = <I extends IInjections = {}>(
     args?: unknown[],
 ) => IDependencies<I>;
 
-export type ResolveRequirementsFunction = <R extends unknown[] = [], C extends object = object>(requirements: R, classImpl: C) => C;
+export type ResolveRequirementsFunction = <R extends any[] = any[], C extends object = object>(requirements: R, classImpl: C) => C;
 
 // we are using private symbol in order to force users work with override function
 // so override always type compatible with original value
@@ -20,7 +20,7 @@ const overrideSymbol = Symbol('Overrides');
  * @description override result
  * @template T type of dependency that have to be overwritten
  */
-export interface IOverrideResult<T extends Injectable = any> {
+export interface IOverrideResult<T extends Injectable = Injectable> {
     [overrideSymbol]: [T, Injected<T>];
 }
 
@@ -32,7 +32,7 @@ export interface IOverrideResult<T extends Injectable = any> {
  * @param value value that will be passed as dependency for this `key`
  * @returns object with symbol property which point to `[key, value]` pair
  */
-export function override<T extends Injectable = any>(key: T, value: Injected<T>): IOverrideResult<T> {
+export function override<T extends Injectable = Injectable>(key: T, value: Injected<T>): IOverrideResult<T> {
     return {
         [overrideSymbol]: [key, value],
     };
@@ -128,7 +128,7 @@ export class Resolver {
      * @param obj dependency that has to be initialized
      * @returns initialized dependency
      */
-    protected initialize(obj: Injectable) {
+    protected initialize<T extends Injectable = Injectable>(obj: T) {
         if (isConstructor(obj)) return new obj();
         if (isCallable(obj)) return obj();
         throw new Error(`Dependency expected to be constructable or callable, but got ${typeof obj}`);
@@ -141,7 +141,7 @@ export class Resolver {
      * @param injectionKey actual key of `dependency`
      * @returns resolved `dependency` instance
      */
-    protected inject<T extends Injectable>(injectionKey: T): Injected<T> {
+    protected inject<T extends Injectable = Injectable>(injectionKey: T): Injected<T> {
         if (!this.injectionRoot.has(injectionKey)) {
             this.injectionRoot.set(
                 injectionKey,
@@ -157,7 +157,7 @@ export class Resolver {
      * @template T type of `injectionKey` that maps to type of `dependency` value
      * @param overridePair actual `[key, value]` pair retrieved from override helper
      */
-    protected setOverride<T extends Injectable = any>(overridePair: IOverrideResult<T>) {
+    protected setOverride<T extends Injectable = Injectable>(overridePair: IOverrideResult<T>) {
         const [key, value] = overridePair[overrideSymbol];
         this.injectionRoot.set(key, value);
     }

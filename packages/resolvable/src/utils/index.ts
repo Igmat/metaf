@@ -1,4 +1,4 @@
-export type Constructable<ARGS extends [] = [], I extends object = object> = new (...args: ARGS) => I;
+export type Constructable<ARGS extends any[] = any[], I extends object = object> = new (...args: ARGS) => I;
 export type Callable<R = unknown> = () => R;
 export type Injectable = Constructable | Callable;
 

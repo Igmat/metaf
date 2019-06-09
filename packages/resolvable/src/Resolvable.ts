@@ -22,7 +22,7 @@ export interface IResolvableClassFn<P extends Constructable = new () => object> 
      * @param requirements dependencies that should exist in code that use this class
      * @returns resolvable class to extend
      */
-    <I extends IInjections = {}, R extends any[]= []>(injections: I, ...requirements: R): Resolvable<I, P>;
+    <I extends IInjections = {}, R extends unknown[] = unknown[]>(injections: I, ...requirements: R): Resolvable<I, P>;
     /**
      * Resolvable class factory
      * @description Resolvable
@@ -30,7 +30,7 @@ export interface IResolvableClassFn<P extends Constructable = new () => object> 
      * @param requirements dependencies that should exist in code that use this class
      * @returns resolvable class to extend
      */
-    <R extends any[]= []>(...requirements: R): Resolvable<{}, P>;
+    <R extends unknown[] = unknown[]>(...requirements: R): Resolvable<{}, P>;
 }
 
 /**
@@ -42,16 +42,18 @@ export interface IResolvableClassFn<P extends Constructable = new () => object> 
  * @param [parent] class that should be a parent for each class return from factory function
  * @returns factory for creating resolvable classes
  */
-export function Resolvable<P extends Constructable = new () => object>(parent = class {} as P): IResolvableClassFn<P> {
+export function Resolvable<P extends Constructable = new () => object>(parent = class { } as P): IResolvableClassFn<P> {
     function ResolvableClassFn<
         I extends IInjections = {},
-        R extends any[]= []>(
+        R extends unknown[] = unknown[]>(
             ...requirements: R): Resolvable<I, P> {
         const injections = requirements[0];
 
+        // TODO: fix this typing issue
+        // tslint:disable-next-line: no-unsafe-any
         class ResolvableImpl extends parent.prototype.constructor {
             protected readonly dependencies: Readonly<IDependencies<I>>;
-            constructor(...args: any[]) {
+            constructor(...args: unknown[]) {
                 super(...args);
                 this.dependencies = (typeof injections === 'object')
                     ? resolveFor(this, ResolvableImpl, injections as I, args)
@@ -61,7 +63,7 @@ export function Resolvable<P extends Constructable = new () => object>(parent = 
 
         return ((typeof injections === 'object')
             ? resolveRequirements(requirements.slice(1), ResolvableImpl)
-            : resolveRequirements(requirements, ResolvableImpl)) as any;
+            : resolveRequirements(requirements, ResolvableImpl)) as Resolvable<I, P>;
     }
 
     return ResolvableClassFn;
