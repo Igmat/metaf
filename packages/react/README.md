@@ -5,10 +5,10 @@
 
 [![Known Vulnerabilities](https://snyk.io/test/npm/metaf-react/badge.svg)](https://snyk.io/test/npm/metaf-react)
 
-# MetaF React
+# MetaF React <!-- omit in toc -->
 > Resolvable component and injection root for adding DI/IoC to React App.
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 

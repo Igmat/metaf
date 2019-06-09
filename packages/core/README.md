@@ -6,12 +6,12 @@
 [![Known Vulnerabilities](https://snyk.io/test/npm/metaf-core/badge.svg)](https://snyk.io/test/npm/metaf-core)
 
 
-# MetaF Core
+# MetaF Core <!-- omit in toc -->
 > Core package for **MetaF**ramework.
 
 > **WARNING:** it's early beta, so documentation may have mistakes, if you face any problems feel free to create [issues](https://github.com/Igmat/metaf/issues).
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 

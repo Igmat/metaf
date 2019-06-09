@@ -5,10 +5,10 @@
 
 [![Known Vulnerabilities](https://snyk.io/test/npm/metaf-resolvable/badge.svg)](https://snyk.io/test/npm/metaf-resolvable)
 
-# MetaF Resolvable
+# MetaF Resolvable <!-- omit in toc -->
 > Abstract resolvable mixin and injection root for adding DI/IoC to any framework.
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
