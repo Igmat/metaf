@@ -55,6 +55,8 @@ export const Component = (<I extends IInjections = {}, R extends IRequirements =
                         .then(() => rerun(() => context.cache = new WeakMap()))
                         .catch(innerError => { throw innerError; });
 
+                    // TODO: think about null return in render
+                    // tslint:disable-next-line: no-null-keyword
                     return null;
                 }
             };

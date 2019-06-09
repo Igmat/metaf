@@ -27,7 +27,7 @@ export interface IRequirementsOverride<T extends HOC = HOC, R extends T = T> {
  * https://github.com/Microsoft/TypeScript/issues/13890
  * will land to TSX type inference, it only forces users to replace requirement HOC
  * by another HOC, which, obviously, could ignore initial invariants,
- * but unfortunately there are not better options for now
+ * but unfortunately there are no better options for now
  * @description creates a `[key, value]` pair describing requirement override
  * @template T type of requirement key that has to be overwritten
  * @template R type of value that will be used instead of original requirement
@@ -46,7 +46,7 @@ export class ReactResolver extends MetafResolvable.Resolver {
     private requirementsArray: HOC[] = [];
     private requirementsSubscribers: ((requirements: HOC[]) => void)[] = [];
     setOverrides(overrides: MetafResolvable.IOverrideResult[]) {
-        overrides.forEach(this.setOverride);
+        overrides.forEach(this.setOverride.bind(this));
     }
     setRequirementsOverrides(overrides: IRequirementsOverride[]) {
         overrides.forEach(requirementPair => {
@@ -62,7 +62,7 @@ export class ReactResolver extends MetafResolvable.Resolver {
             this.requirements.set(key, value);
         });
     }
-    resolveRequirements<R extends IRequirements, C extends object = any>(requirements: R, classImpl: C) {
+    resolveRequirements<C extends object = object>(requirements: IRequirements, classImpl: C) {
         let isRequirementsUpdated = false;
         requirements
             .forEach(requirement => {
@@ -106,7 +106,7 @@ export const resolver = new ReactResolver();
  */
 export function resolveRequirements<
     R extends IRequirements = [],
-    C extends object = any>(requirements: R, componentImpl: C) {
+    C extends object = {}>(requirements: R, componentImpl: C) {
     return resolver.resolveRequirements(requirements, componentImpl);
 }
 function resolveFor<I extends MetafResolvable.IInjections = {}>(
