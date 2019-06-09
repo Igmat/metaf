@@ -2,6 +2,7 @@ import { getAtomCreator } from './atoms';
 import { calculate, linkToCalculated, recalculate } from './calculations';
 import { ITransaction, mutate } from './mutations';
 import { Observable } from './Observable';
+// tslint:disable: no-unsafe-any
 
 export function observeFunction<T extends Function>(fn: T, onSet?: (tx: ITransaction) => void) {
     const createAtomIfNotExists = getAtomCreator(fn);
@@ -25,13 +26,6 @@ export function observeObj<T extends {}>(obj: T, onSet?: (tx: ITransaction) => v
 
     return new Proxy(obj, {
         // TODO: fix `symbol` type
-        defineProperty(target, p: string | number, attributes) {
-            const { value } = attributes;
-            createAtomIfNotExists(p, value);
-
-            return Reflect.defineProperty(target, p, attributes);
-        },
-        // TODO: fix `symbol` type
         get(target, p: string | number, receiver) {
             const atom = createAtomIfNotExists(p);
 
@@ -42,6 +36,13 @@ export function observeObj<T extends {}>(obj: T, onSet?: (tx: ITransaction) => v
             const atom = createAtomIfNotExists(p, value);
 
             return mutate(atom, () => Reflect.set(target, p, value, receiver), onSet);
+        },
+        // TODO: fix `symbol` type
+        defineProperty(target, p: string | number, attributes) {
+            const { value } = attributes;
+            createAtomIfNotExists(p, value);
+
+            return Reflect.defineProperty(target, p, attributes);
         },
     });
 }
@@ -55,13 +56,6 @@ export function observeArray<T extends unknown[]>(arr: T, onSet?: (tx: ITransact
 
     return new Proxy(arr, {
         // TODO: fix `symbol` type
-        defineProperty(target, p: string | number, attributes) {
-            const { value } = attributes;
-            createAtomIfNotExists(p, value);
-
-            return Reflect.defineProperty(target, p, attributes);
-        },
-        // TODO: fix `symbol` type
         get(target, p: string | number, receiver) {
             const atom = createAtomIfNotExists(p);
 
@@ -73,10 +67,17 @@ export function observeArray<T extends unknown[]>(arr: T, onSet?: (tx: ITransact
 
             return mutate(atom, () => Reflect.set(target, p, value, receiver), onSet);
         },
+        // TODO: fix `symbol` type
+        defineProperty(target, p: string | number, attributes) {
+            const { value } = attributes;
+            createAtomIfNotExists(p, value);
+
+            return Reflect.defineProperty(target, p, attributes);
+        },
     });
 }
 
-export function observe<T>(obj: T, onSet?: (tx: ITransaction) => void): any {
+export function observe<T>(obj: T, onSet?: (tx: ITransaction) => void): T {
     switch (typeof obj) {
         case 'object':
             if (obj === null) return obj;

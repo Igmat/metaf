@@ -29,11 +29,11 @@ export function getAtomCreator(obj: Function | object) {
         return existingAtom !== undefined
             ? existingAtom
             : objAtoms[p] = {
-                source: obj,
-                name: p,
                 dependencies: [],
                 dependents: [],
                 isDirty: true,
+                name: p,
+                source: obj,
                 value,
             };
     };
