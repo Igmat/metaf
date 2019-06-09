@@ -51,4 +51,3 @@ export function synchronous<I extends object>(obj: I): Synchronous<I> {
 
     return synchronousObj;
 }
-
