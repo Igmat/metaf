@@ -27,7 +27,7 @@
         "@commitlint/cli": "8.0.0",
         "@commitlint/config-conventional": "8.0.0",
         "@types/cross-spawn": "6.0.0",
-        "@types/node": "10.14.9",
+        "@types/node": "10.14.10",
         "baset": "0.14.8",
         "baset-baseliner-md": "0.14.8",
         "baset-reader-ts": "0.14.7",
