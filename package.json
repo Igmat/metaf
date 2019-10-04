@@ -26,7 +26,7 @@
     "devDependencies": {
         "@commitlint/cli": "8.2.0",
         "@commitlint/config-conventional": "8.2.0",
-        "@types/cross-spawn": "6.0.0",
+        "@types/cross-spawn": "6.0.1",
         "@types/node": "10.14.20",
         "baset": "0.14.8",
         "baset-baseliner-md": "0.14.8",
