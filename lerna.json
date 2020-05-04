@@ -8,6 +8,9 @@
         "bootstrap": {
             "hoist": "**"
         },
+        "version": {
+            "createRelease":"github"
+        },
         "publish": {
             "allowBranch": "master",
             "conventionalCommits": true,
