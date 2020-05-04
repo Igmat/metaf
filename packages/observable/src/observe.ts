@@ -27,6 +27,11 @@ export function observeObj<T extends {}>(obj: T, onSet?: (tx: ITransaction) => v
     return new Proxy(obj, {
         // TODO: fix `symbol` type
         get(target, p: string | number, receiver) {
+            // preserving Proxy invariant
+            const desc = Reflect.getOwnPropertyDescriptor(target, p);
+            if (desc && !desc.configurable && !desc.writable) {
+                return Reflect.get(target, p, receiver);
+            }
             const atom = createAtomIfNotExists(p);
 
             return calculate(atom, () => Reflect.get(target, p, receiver), observe);
