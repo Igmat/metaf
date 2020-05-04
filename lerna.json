@@ -3,18 +3,17 @@
         "packages/*",
         "tests/*"
     ],
-    "version": "0.4.2",
+    "version": "0.4.3",
     "command": {
         "bootstrap": {
             "hoist": "**"
         },
         "version": {
-            "createRelease":"github"
+            "createRelease": "github"
         },
         "publish": {
             "allowBranch": "master",
             "conventionalCommits": true,
-            "githubRelease": true,
             "private": false,
             "ignoreChanges": [
                 "*.md",

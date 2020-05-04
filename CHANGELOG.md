@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.3](https://github.com/Igmat/metaf/compare/v0.4.2...v0.4.3) (2020-05-04)
+
+
+### Bug Fixes
+
+* **observable:** preserve proxy invariants on get ([0c613ae](https://github.com/Igmat/metaf/commit/0c613ae5cd6fee8ba971644d90cb4edfb2f53239))
+
+
+
+
+
 ## [0.4.2](https://github.com/Igmat/metaf/compare/v0.4.1...v0.4.2) (2019-06-09)
 
 
