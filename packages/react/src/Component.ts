@@ -1,4 +1,4 @@
-import { autorun } from 'metaf-observable';
+import { autorun, observe } from 'metaf-observable';
 import { AbstractResolvable, IInjections, Resolvable } from 'metaf-resolvable';
 import { context, PromiseCache } from 'metaf-sync';
 import React from 'react';
@@ -60,6 +60,8 @@ export const Component = (<I extends IInjections = {}, R extends IRequirements =
                     return null;
                 }
             };
+
+            return observe(this);
         }
     }
 
