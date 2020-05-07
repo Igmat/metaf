@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.4](https://github.com/Igmat/metaf/compare/v0.4.3...v0.4.4) (2020-05-07)
+
+
+### Bug Fixes
+
+* **react:** make component observable too ([0ade6f7](https://github.com/Igmat/metaf/commit/0ade6f71c7c15b7b807831e4a904f00fc2aea962))
+
+
+
+
+
 ## [0.4.3](https://github.com/Igmat/metaf/compare/v0.4.2...v0.4.3) (2020-05-04)
 
 **Note:** Version bump only for package metaf-react
