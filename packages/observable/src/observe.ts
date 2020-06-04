@@ -21,6 +21,23 @@ export function observeFunction<T extends Function>(fn: T, onSet?: (tx: ITransac
     });
 }
 
+export function originalFnObserve<T extends Function>(fn: T, onSet?: (tx: ITransaction) => void) {
+    const createAtomIfNotExists = getAtomCreator(fn);
+
+    return new Proxy(fn, {
+        apply(target, thisArg, args) {
+            const p = JSON.stringify({ args });
+            const atom = createAtomIfNotExists(p);
+            // function might have side effects, so we don't memorize it
+            // TODO: investigate if `mutation` information is sufficient enough
+            // to detect when function is pure
+            linkToCalculated(atom);
+
+            return recalculate(atom, () => Reflect.apply(target, thisArg, args), observe);
+        },
+    });
+}
+
 export function observeObj<T extends {}>(obj: T, onSet?: (tx: ITransaction) => void): T {
     const createAtomIfNotExists = getAtomCreator(obj);
 
@@ -51,6 +68,32 @@ export function observeObj<T extends {}>(obj: T, onSet?: (tx: ITransaction) => v
         },
     });
 }
+export function observeWeakMap<K extends object, V>(obj: WeakMap<K, V>, onSet?: (tx: ITransaction) => void): WeakMap<K, V> {
+    const createAtomIfNotExists = getAtomCreator(obj);
+
+    return new Proxy(obj, {
+        // TODO: fix `symbol` type
+        get(target, p: string | number, receiver) {
+            // preserving Proxy invariant
+            const desc = Reflect.getOwnPropertyDescriptor(target, p);
+            if (desc && !desc.configurable && !desc.writable) {
+                return Reflect.get(target, p, receiver);
+            }
+            const atom = createAtomIfNotExists(p);
+
+            return (p === 'get' || p === 'set' || p === 'has' || p === 'delete')
+                ? calculate(atom, () => Reflect.get(obj, p, receiver), observe)
+                : calculate(atom, () => Reflect.get(target, p, receiver), observe);
+        },
+        // TODO: fix `symbol` type
+        set(target, p: string | number, value, receiver) {
+            const atom = createAtomIfNotExists(p, value);
+
+            return mutate(atom, () => Reflect.set(target, p, value, receiver), onSet);
+        },
+    });
+}
+
 const arrayMethodKeys = Reflect.ownKeys(Array.prototype);
 const getObserver = (p: string | number | symbol) =>
     arrayMethodKeys.indexOf(p) === -1
@@ -88,6 +131,7 @@ export function observe<T>(obj: T, onSet?: (tx: ITransaction) => void): T {
             if (obj === null) return obj;
             if (obj instanceof Observable) return obj;
             if (obj instanceof Promise) return obj;
+            if (obj instanceof WeakMap) return obj;
             if (Array.isArray(obj)) return observeArray(obj, onSet);
 
             return observeObj(obj, onSet);
