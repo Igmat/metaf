@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.5](https://github.com/Igmat/metaf/compare/v0.4.4...v0.4.5) (2020-06-04)
+
+
+### Bug Fixes
+
+* update lock files, so they work properly ([f05aa14](https://github.com/Igmat/metaf/commit/f05aa144a21efefe9b1a7b69b86723e43df7fde2))
+
+
+
+
+
 ## [0.4.4](https://github.com/Igmat/metaf/compare/v0.4.3...v0.4.4) (2020-05-07)
 
 
