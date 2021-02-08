@@ -37,7 +37,7 @@
         "doctoc": "1.4.0",
         "git-url-parse": "10.1.0",
         "greenkeeper-lockfile": "1.15.1",
-        "husky": "2.7.0",
+        "husky": "4.3.8",
         "lerna": "3.22.1",
         "lint-staged": "7.3.0",
         "node-fetch": "2.6.1",
