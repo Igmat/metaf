@@ -30,15 +30,15 @@
         "metaf-observable": "^0.4.5",
         "metaf-resolvable": "^0.4.1",
         "metaf-sync": "^0.4.1",
-        "react-is": "^16.8.6"
+        "react-is": "^17.0.0"
     },
     "peerDependencies": {
-        "react": "^16.8.6"
+        "react": "^16.8.6 || ^17.0.0"
     },
     "devDependencies": {
         "@types/react": "16.8.19",
         "@types/react-is": "16.7.2",
-        "react": "16.14.0"
+        "react": "17.0.2"
     },
     "license": "MIT"
 }
