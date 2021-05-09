@@ -31,7 +31,7 @@
         "baset": "0.14.8",
         "baset-baseliner-md": "0.14.8",
         "baset-reader-ts": "0.14.7",
-        "commitizen": "3.1.2",
+        "commitizen": "4.2.4",
         "cross-spawn": "6.0.5",
         "cz-conventional-changelog": "2.1.0",
         "doctoc": "1.4.0",
