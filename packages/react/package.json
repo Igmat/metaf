@@ -36,7 +36,7 @@
         "react": "^16.8.6"
     },
     "devDependencies": {
-        "@types/react": "16.8.19",
+        "@types/react": "17.0.14",
         "@types/react-is": "16.7.2",
         "react": "16.14.0"
     },
