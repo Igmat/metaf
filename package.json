@@ -33,7 +33,7 @@
         "baset-reader-ts": "0.14.7",
         "commitizen": "3.1.2",
         "cross-spawn": "6.0.5",
-        "cz-conventional-changelog": "2.1.0",
+        "cz-conventional-changelog": "3.3.0",
         "doctoc": "1.4.0",
         "git-url-parse": "10.1.0",
         "greenkeeper-lockfile": "1.15.1",
