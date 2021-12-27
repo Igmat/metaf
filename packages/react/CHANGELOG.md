@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.5.0 (2021-12-27)
+
+
+### Features
+
+* **react:** re-export inject from resolvable ([c7602c0](https://github.com/Igmat/metaf/commit/c7602c003cbc5c39759c36f647b89178d2062306))
+
+
+
+
+
 ## 0.4.7 (2021-12-27)
 
 
