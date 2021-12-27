@@ -26,8 +26,8 @@
         "cz": "git-cz"
     },
     "devDependencies": {
-        "@commitlint/cli": "15.0.0",
-        "@commitlint/config-conventional": "15.0.0",
+        "@commitlint/cli": "16.0.0",
+        "@commitlint/config-conventional": "16.0.0",
         "@types/cross-spawn": "6.0.2",
         "@types/node": "16.11.12",
         "baset": "0.14.8",
