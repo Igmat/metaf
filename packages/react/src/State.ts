@@ -1,8 +1,8 @@
-import { Observable } from 'metaf-observable';
+// import { Observable } from 'metaf-observable';
 import { AbstractResolvable, /* Constructable, */ IInjections, Resolvable } from 'metaf-resolvable';
 //  import { Synchronous } from 'metaf-sync';
 
-class BaseState extends Observable {
+class BaseState /* extends Observable */ {
 }
 
 export type IRequirements = any[];
