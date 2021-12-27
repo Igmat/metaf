@@ -8,14 +8,14 @@ jobs:
     vmImage: ${{ parameters.vmImage }}
   strategy:
     matrix:
-      node_v8:
-        node_version: 8.x
-      node_v9:
-        node_version: 9.x
       node_v10:
         node_version: 10.x
-      node_v11:
-        node_version: 11.x
+      node_v12:
+        node_version: 12.x
+      node_v14:
+        node_version: 14.x
+      node_v16:
+        node_version: 16.x
     maxParallel: 4
 
   steps:
