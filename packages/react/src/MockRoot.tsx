@@ -59,15 +59,15 @@ function addPropsToAll(children: ReactNode, resolve: MetafResolvable.ResolveForF
 }
 
 function resolveFor<I extends MetafResolvable.IInjections = {}>(
-    instance: object,
-    classImpl: MetafResolvable.Constructable,
+    classImpl: MetafResolvable.AbstractClass | MetafResolvable.AbstractFn,
     injections: I = {} as I,
+    instance: object,
     args: any[] = [],
 ): MetafResolvable.IDependencies<I> {
     const [props] = args;
     const { [resolveSymbol]: resolve = defaultResolver.resolveFor.bind(defaultResolver) } = props;
 
-    return resolve(instance, classImpl, injections, args);
+    return resolve(classImpl, injections, instance, args);
 }
 
 let isResolverFnChangedToMock = false;
@@ -80,7 +80,7 @@ let isResolverFnChangedToMock = false;
  * `ApplicationRoot` in your production code, since it significantly affects
  * render flow in order to properly resolve dependencies for each subtree,
  * which may cause performance issues in some circumstances.
- * **BE AWARE THAT IT WAS DESIGNED FOR TESTING PUPOSES _ONLY_**
+ * **BE AWARE THAT IT WAS DESIGNED FOR TESTING PURPOSES _ONLY_**
  */
 export class MockRoot extends ApplicationRoot {
 

@@ -15,8 +15,8 @@
         "prepublish": "npm run doctoc"
     },
     "dependencies": {
-        "csstype": "^2.6.4",
-        "metaf-observable": "^0.4.3",
+        "csstype": "^3.0.10",
+        "metaf-observable": "^0.4.5",
         "metaf-resolvable": "^0.4.1",
         "metaf-sync": "^0.4.1"
     },

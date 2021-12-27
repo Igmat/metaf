@@ -1,6 +1,6 @@
-import { observe } from 'metaf-observable';
+// import { observe } from 'metaf-observable';
 import * as MetafResolvable from 'metaf-resolvable';
-import { synchronous } from 'metaf-sync';
+// import { synchronous } from 'metaf-sync';
 import { ReactNode } from 'react';
 
 export type HOC = (app: ReactNode) => JSX.Element;
@@ -84,7 +84,7 @@ export class ReactResolver extends MetafResolvable.Resolver {
         const result = super.initialize(obj);
 
         return (typeof result === 'object' && result !== null)
-            ? synchronous(observe(result))
+            ? /* synchronous */(/* observe */(result))
             : result;
     }
 }
@@ -110,10 +110,10 @@ export function resolveRequirements<
     return resolver.resolveRequirements(requirements, componentImpl);
 }
 function resolveFor<I extends MetafResolvable.IInjections = {}>(
-    instance: object,
-    classImpl: MetafResolvable.Constructable,
-    injections?: I,
+    classImpl: MetafResolvable.AbstractClass | MetafResolvable.AbstractFn,
+    injections: I = {} as I,
+    instance?: object,
     args?: any[]): MetafResolvable.IDependencies<I> {
-    return resolver.resolveFor(instance, classImpl, injections, args);
+    return resolver.resolveFor(classImpl, injections, instance, args);
 }
 MetafResolvable.setResolverFn(resolveFor, resolveRequirements);

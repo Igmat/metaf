@@ -3,8 +3,8 @@ import { Callable, Constructable, Injectable } from './utils';
 export type Injected<T extends Injectable> = T extends Constructable
     ? InstanceType<T>
     : T extends Callable
-        ? ReturnType<T>
-        : never;
+    ? ReturnType<T>
+    : never;
 
 /**
  * Injections interface

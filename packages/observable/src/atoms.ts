@@ -1,6 +1,6 @@
 export interface IAbstractAtom {
     source: Function | object;
-    name: string | number;
+    name: string | symbol;
     dependencies: IAtom[];
     dependents: IAtom[];
 }
@@ -18,9 +18,9 @@ export const calculatedAtoms: IAtom[] = [];
 export function getAtomCreator(obj: Function | object) {
     const objAtoms: {
         [index: string]: IAtom | undefined;
-        [index: number]: IAtom | undefined;
+        [index: symbol]: IAtom | undefined;
     } = {};
-    const createAtomIfNotExists = <V>(p: string | number, value?: V) => {
+    const createAtomIfNotExists = <V>(p: string | symbol, value?: V) => {
         const hasOwn = Object.prototype.hasOwnProperty.call(objAtoms, p);
         const existingAtom = hasOwn
             ? objAtoms[p]

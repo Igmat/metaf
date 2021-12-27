@@ -43,7 +43,7 @@ export function observeObj<T extends {}>(obj: T, onSet?: (tx: ITransaction) => v
 
     return new Proxy(obj, {
         // TODO: fix `symbol` type
-        get(target, p: string | number, receiver) {
+        get(target, p: string | symbol, receiver) {
             // preserving Proxy invariant
             const desc = Reflect.getOwnPropertyDescriptor(target, p);
             if (desc && !desc.configurable && !desc.writable) {
@@ -54,13 +54,13 @@ export function observeObj<T extends {}>(obj: T, onSet?: (tx: ITransaction) => v
             return calculate(atom, () => Reflect.get(target, p, receiver), observe);
         },
         // TODO: fix `symbol` type
-        set(target, p: string | number, value, receiver) {
+        set(target, p: string | symbol, value, receiver) {
             const atom = createAtomIfNotExists(p, value);
 
             return mutate(atom, () => Reflect.set(target, p, value, receiver), onSet);
         },
         // TODO: fix `symbol` type
-        defineProperty(target, p: string | number, attributes) {
+        defineProperty(target, p: string | symbol, attributes) {
             const { value } = attributes;
             createAtomIfNotExists(p, value);
 
@@ -73,7 +73,7 @@ export function observeWeakMap<K extends object, V>(obj: WeakMap<K, V>, onSet?: 
 
     return new Proxy(obj, {
         // TODO: fix `symbol` type
-        get(target, p: string | number, receiver) {
+        get(target, p: string | symbol, receiver) {
             // preserving Proxy invariant
             const desc = Reflect.getOwnPropertyDescriptor(target, p);
             if (desc && !desc.configurable && !desc.writable) {
@@ -86,7 +86,7 @@ export function observeWeakMap<K extends object, V>(obj: WeakMap<K, V>, onSet?: 
                 : calculate(atom, () => Reflect.get(target, p, receiver), observe);
         },
         // TODO: fix `symbol` type
-        set(target, p: string | number, value, receiver) {
+        set(target, p: string | symbol, value, receiver) {
             const atom = createAtomIfNotExists(p, value);
 
             return mutate(atom, () => Reflect.set(target, p, value, receiver), onSet);
@@ -95,7 +95,7 @@ export function observeWeakMap<K extends object, V>(obj: WeakMap<K, V>, onSet?: 
 }
 
 const arrayMethodKeys = Reflect.ownKeys(Array.prototype);
-const getObserver = (p: string | number | symbol) =>
+const getObserver = (p: string | symbol) =>
     arrayMethodKeys.indexOf(p) === -1
         ? observe
         : <T>(obj: T) => obj;
@@ -104,19 +104,19 @@ export function observeArray<T extends unknown[]>(arr: T, onSet?: (tx: ITransact
 
     return new Proxy(arr, {
         // TODO: fix `symbol` type
-        get(target, p: string | number, receiver) {
+        get(target, p: string | symbol, receiver) {
             const atom = createAtomIfNotExists(p);
 
             return calculate(atom, () => Reflect.get(target, p, receiver), getObserver(p));
         },
         // TODO: fix `symbol` type
-        set(target, p: string | number, value, receiver) {
+        set(target, p: string | symbol, value, receiver) {
             const atom = createAtomIfNotExists(p, value);
 
             return mutate(atom, () => Reflect.set(target, p, value, receiver), onSet);
         },
         // TODO: fix `symbol` type
-        defineProperty(target, p: string | number, attributes) {
+        defineProperty(target, p: string | symbol, attributes) {
             const { value } = attributes;
             createAtomIfNotExists(p, value);
 

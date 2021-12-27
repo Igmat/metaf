@@ -1,0 +1,36 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "target": "es5",
+        "lib": [
+            "es5",
+            "es6",
+            "esnext.asynciterable"
+        ],
+        "strict": true,
+        "allowJs": false,
+        "preserveConstEnums": true,
+        "noImplicitThis": true,
+        "declarationMap": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "declaration": true,
+        "sourceMap": true,
+        "jsx": "react",
+        "resolveJsonModule": true,
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": false,
+        "noErrorTruncation": true,
+        "noFallthroughCasesInSwitch": true,
+        "downlevelIteration": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "pretty": true,
+        "stripInternal": true
+    }
+}

@@ -1,18 +1,18 @@
 import { Observable } from 'metaf-observable';
-import { AbstractResolvable, Constructable, IInjections, Resolvable } from 'metaf-resolvable';
-import { Synchronous } from 'metaf-sync';
+import { AbstractResolvable, /* Constructable, */ IInjections, Resolvable } from 'metaf-resolvable';
+//  import { Synchronous } from 'metaf-sync';
 
 class BaseState extends Observable {
 }
 
 export type IRequirements = any[];
-export type ISyncDependencies<T extends IInjections> = {
-    [K in keyof T]: T[K] extends Constructable
-    ? new() => Synchronous<InstanceType<T[K]>>
-    : T[K];
-};
+// export type ISyncDependencies<T extends IInjections> = {
+//     [K in keyof T]: T[K] extends Constructable
+//     ? new () => Synchronous<InstanceType<T[K]>>
+//     : T[K];
+// };
 export type State<I extends IInjections = {}> =
-    new () => AbstractResolvable<ISyncDependencies<I>>;
+    new () => AbstractResolvable</* ISyncDependencies< */I/* > */>;
 
 export interface IState {
     /**

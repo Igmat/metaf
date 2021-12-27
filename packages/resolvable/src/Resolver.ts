@@ -1,11 +1,11 @@
 // tslint:disable:prefer-function-over-method
 import { IDependencies, IInjections, Injected } from './AbstractResolvable';
-import { Constructable, Injectable, isCallable, isConstructor } from './utils';
+import { AbstractClass, AbstractFn, Injectable, isCallable, isConstructor } from './utils';
 
 export type ResolveForFunction = <I extends IInjections = {}>(
-    instance: object,
-    classImpl: Constructable,
+    classImpl: AbstractClass | AbstractFn,
     injections?: I,
+    instance?: object,
     args?: unknown[],
 ) => IDependencies<I>;
 
@@ -49,7 +49,7 @@ export function override<T extends Injectable = Injectable>(key: T, value: Injec
 export class Resolver {
 
     /**
-     * WeakMap where `key` points to resolved and initialized and resolved `dependency`
+     * WeakMap where `key` points to resolved and initialized `dependency`
      * @description map of all resolved dependencies
      */
     protected injectionRoot: WeakMap<Injectable, unknown>;
@@ -58,7 +58,7 @@ export class Resolver {
      * WeakMap where `key` is resolvable class and `value` is object with resolved `dependencies`
      * @description resolved dependencies for resolvable class implementations
      */
-    protected implementations: WeakMap<Constructable, unknown>;
+    protected implementations: WeakMap<AbstractClass | AbstractFn, unknown>;
 
     /**
      * Creates an instance of resolver.
@@ -95,17 +95,17 @@ export class Resolver {
      * Entry point for resolving dependencies of particular instance
      * @description resolves `injections` for `instance` of `classImpl` resolvable class
      * @template I type of `injections` dictionary
-     * @param instance particular class instance
      * @param classImpl class constructor that was used for creating this instance
      * @param [injections] dictionary of dependencies that should be resolved and initialized
+     * @param [instance] particular class instance
      * @param [args] arguments that were passed to constructor function for creating `instance`
      * @returns dictionary of resolved and initialized dependencies
      */
     resolveFor<I extends IInjections = {}>(
-        instance: object,
-        classImpl: Constructable,
+        classImpl: AbstractClass | AbstractFn,
         injections: I = {} as I,
-        args: unknown[] = [],
+        instance?: object,
+        args?: unknown[],
     ): IDependencies<I> {
         if (this.implementations.has(classImpl)) return this.implementations.get(classImpl) as IDependencies<I>;
 
@@ -123,7 +123,7 @@ export class Resolver {
      * This method is used internally to properly initialize dependency
      * @description initializes injectable `obj`
      * > **NOTE:** this function is pure, but it's possible that ancestors may need
-     * another solution for initializing instacnes, because of framework
+     * another solution for initializing instances, because of framework
      * requirements, conventions and best practices
      * @param obj dependency that has to be initialized
      * @returns initialized dependency

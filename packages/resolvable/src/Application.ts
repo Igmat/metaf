@@ -1,6 +1,6 @@
 import { IDependencies, IInjections } from './AbstractResolvable';
 import { ResolveForFunction, Resolver, ResolveRequirementsFunction } from './Resolver';
-import { Constructable } from './utils';
+import { AbstractClass, AbstractFn } from './utils';
 
 const resolver = new Resolver();
 const application = {
@@ -13,12 +13,12 @@ const application = {
  * @internal
  */
 export function resolveFor<I extends IInjections = {}>(
-    instance: object,
-    classImpl: Constructable,
+    classImpl: AbstractClass | AbstractFn,
     injections: I = {} as I,
-    args: unknown[] = [],
+    instance?: object,
+    args?: unknown[],
 ): IDependencies<I> {
-    return application.resolveFor(instance, classImpl, injections, args);
+    return application.resolveFor(classImpl, injections, instance, args);
 }
 
 /**

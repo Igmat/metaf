@@ -1,12 +1,13 @@
-import { autorun, observe } from 'metaf-observable';
+// import { autorun, observe } from 'metaf-observable';
 import { AbstractResolvable, IInjections, Resolvable } from 'metaf-resolvable';
-import { context, PromiseCache } from 'metaf-sync';
+// import { context, PromiseCache } from 'metaf-sync';
 import React from 'react';
 import { IRequirements } from './Resolver';
-import { ISyncDependencies } from './State';
+// import { ISyncDependencies } from './State';
 
 export type Component<I extends IInjections = {}> =
-    new <P = {}, S = {}, SS = any>(props: Readonly<P>) => AbstractResolvable<ISyncDependencies<I>> & React.Component<P, S, SS>;
+    new <P = {}, S = {}, SS = any>(props: Readonly<P>) => AbstractResolvable</* ISyncDependencies< */I/* > */> & React.Component<P, S, SS>;
+
 
 export interface IComponent {
     /**
@@ -39,29 +40,33 @@ export const Component = (<I extends IInjections = {}, R extends IRequirements =
     class BaseComponent<P> extends ReactComponent(injections, ...requirements)<P> {
         constructor(props: Readonly<P>) {
             super(props);
-            const originalRender = this.render.bind(this);
-            const rerun = this.forceUpdate.bind(this);
-            const render = autorun(originalRender, {
-                rerun,
-            });
+            // -----------------------------------------------
+            // Previous code for suspended and reactive render
+            // -----------------------------------------------
+            // const originalRender = this.render.bind(this);
+            // const rerun = this.forceUpdate.bind(this);
+            // const render = autorun(originalRender, {
+            //     rerun,
+            // });
 
-            this.render = () => {
-                try {
-                    return render();
-                } catch (err) {
-                    if (!(err instanceof PromiseCache)) throw err;
+            // this.render = () => {
+            //     try {
+            //         return render();
+            //     } catch (err) {
+            //         if (!(err instanceof PromiseCache)) throw err;
 
-                    err.resolved
-                        .then(() => rerun(() => context.cache = new WeakMap()))
-                        .catch(innerError => { throw innerError; });
+            //         err.resolved
+            //             .then(() => rerun(() => context.cache = new WeakMap()))
+            //             .catch(innerError => { throw innerError; });
 
-                    // TODO: think about null return in render
-                    // tslint:disable-next-line: no-null-keyword
-                    return null;
-                }
-            };
+            //         // TODO: think about null return in render
+            //         // tslint:disable-next-line: no-null-keyword
+            //         return null;
+            //     }
+            // };
 
-            return observe(this);
+            // return observe(this);
+            // -----------------------------------------------
         }
     }
 
