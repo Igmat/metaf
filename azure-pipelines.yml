@@ -36,7 +36,7 @@ jobs:
   - Windows
   condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
   pool:
-    vmImage: 'ubuntu-16.04'
+    vmImage: 'ubuntu-latest'
   steps:
   - task: NodeTool@0
     inputs:
