@@ -21,6 +21,7 @@
         "doctoc": "doctoc README.md docs/CONTRIBUTING.md",
         "prerelease": "npm run build && npm run doctoc",
         "release": "lerna publish --yes",
+        "release:retry": "lerna publish from-package --yes",
         "update:tsconfig.json": "ts-node scripts/update-package-tsconfig.ts",
         "update:package.json": "ts-node scripts/update-package-json.ts",
         "cz": "git-cz"
