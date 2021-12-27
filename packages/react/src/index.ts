@@ -1,4 +1,4 @@
-export { override as dependency } from 'metaf-resolvable';
+export { inject, override as dependency } from 'metaf-resolvable';
 export { ApplicationRoot } from './ApplicationRoot';
 export { Component, ResolvableComponent } from './Component';
 export { defineRequirement } from './defineRequirement';
