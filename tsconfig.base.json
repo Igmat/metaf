@@ -6,7 +6,8 @@
         "lib": [
             "es5",
             "es6",
-            "esnext.asynciterable"
+            "esnext.asynciterable",
+            "DOM"
         ],
         "strict": true,
         "allowJs": false,
