@@ -7,7 +7,7 @@ steps:
     versionSpec: ${{ parameters.node_version }}
   displayName: 'Install Node.js'
 
-- script: npm install
+- script: npm ci
   displayName: 'Install dependencies'
 
 - script: npm run build
