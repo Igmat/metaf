@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.4.7 (2021-12-27)
+
+
+### Bug Fixes
+
+* **react:** temporary not observable state ([688a589](https://github.com/Igmat/metaf/commit/688a589ee1216e22aa0c073a3a69a7c26074df9b))
+
+
+
+
+
 ## 0.4.6 (2021-12-27)
 
 **Note:** Version bump only for package metaf-react
