@@ -1,5 +1,6 @@
 // import { observe } from 'metaf-observable';
 import * as MetafResolvable from 'metaf-resolvable';
+import { Injectable, Injected, override } from 'metaf-resolvable';
 // import { synchronous } from 'metaf-sync';
 import { ReactNode } from 'react';
 
@@ -117,3 +118,14 @@ function resolveFor<I extends MetafResolvable.IInjections = {}>(
     return resolver.resolveFor(classImpl, injections, instance, args);
 }
 MetafResolvable.setResolverFn(resolveFor, resolveRequirements);
+
+export type IOverridesHelper = {
+    set<T extends Injectable = Injectable>(key: T, value: Injected<T>): IOverridesHelper;
+}
+export const overrides: IOverridesHelper = {
+    set<T extends Injectable = Injectable>(key: T, value: Injected<T>) {
+        resolver.setOverrides([override(key, value)]);
+
+        return overrides;
+    }
+}
