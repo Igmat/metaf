@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.5.1 (2021-12-28)
+
+
+### Bug Fixes
+
+* republish with proper artifacts ([0233cac](https://github.com/Igmat/metaf/commit/0233cacfbae459a17578ccf40679d755c8ef5e10))
+
+
+
+
+
 # 0.5.0 (2021-12-27)
 
 
