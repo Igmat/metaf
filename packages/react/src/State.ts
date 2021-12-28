@@ -1,5 +1,5 @@
-// import { Observable } from 'metaf-observable';
 import { AbstractResolvable, /* Constructable, */ IInjections, Resolvable } from 'metaf-resolvable';
+// import { Observable } from 'metaf-observable';
 //  import { Synchronous } from 'metaf-sync';
 
 class BaseState /* extends Observable */ {
