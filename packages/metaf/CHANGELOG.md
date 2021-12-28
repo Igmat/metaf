@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.6.0 (2021-12-28)
+
+
+### Features
+
+* add override helper ([9f34f41](https://github.com/Igmat/metaf/commit/9f34f416f054b3107aad4447326034c27731afa2))
+
+
+
+
+
 ## 0.5.1 (2021-12-28)
 
 
